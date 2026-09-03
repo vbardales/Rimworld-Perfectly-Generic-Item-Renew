@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Perfectly Generic Item Patched</name>
+  <author>Ogliss - 1.6 update by nelim</author>
+  <packageId>nelim.perfectlygenericitempatched</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Update of Ogliss' Perfectly Generic Item to RimWorld 1.6.
+
+I am not the author of this mod. The idea, the design and the original code are entirely Ogliss', made for MercuryDoll - all I did was the work needed to make it run on 1.6. Credit goes to them; mistakes in the update are mine. If the original author comes back to it, or asks me to take this down, I will.
+
+Original mod: https://steamcommunity.com/sharedfiles/filedetails/?id=2169353373
+
+What it does
+
+When you remove a mod from an ongoing save, every item it added is lost, and the log fills with "could not load reference to ThingDef". This mod catches those missing things as the save is read and turns each one into a perfectly generic item - a stack of green placeholder blocks - the way Starbound does. Nothing disappears silently, and you can haul, sell or destroy the leftovers at your own pace. A mod setting makes them despawn on their own a few seconds after loading.
+
+The generic item is also a stuff, so it can stand in for a wall or a garment whose material is gone. It is excluded from every material picker, so it is never offered for construction, never used by generated bases, and never handed out as a quest reward.
+
+What changed for 1.6
+
+The mod was dead on 1.6, not merely flagged red. Its Harmony setup patches all its hooks in one call, one of those hooks was gone, and the exception took the whole class down with it - including the missing-def replacement that is the entire point of the mod.
+
+- BaseGenUtility.IsCheapWallStuff no longer exists in 1.6. The patch that used it kept the generic item out of generated settlement walls; that job is now done by allowedInStuffGeneration on the def itself, which is what 1.6 checks in its place. The patch is gone.
+- StuffProperties.soundImpactStuff was renamed soundImpactBullet, which was throwing an XML error on every load.
+- The three remaining hooks - StuffProperties.CanMake, SketchGenUtility.IsStuffAllowed, ThingSetMakerUtility.IsDerpAndDisallowed - and BackCompatibility.BackCompatibleDefName still exist in 1.6 with the same signatures, and were recompiled unchanged against the 1.6 reference assemblies.
+
+Three defects were fixed along the way, which is why this is "Patched" rather than a plain update.
+
+- Translation injections go through BackCompatibleDefName as well. The mod answered them too, so a missing def's translated labels were written onto the generic item, renaming it in-game. Def injections are now left alone.
+- When RimWorld's own compatibility chain successfully renamed an old def, the mod overrode that answer with the generic item anyway, losing a thing that could have been recovered. It now only steps in when nothing else resolved.
+- The optional StuffedFloors compatibility patch was registered as a prefix while being written as a postfix, so it read a result that did not exist yet. It is now registered as a postfix.
+
+A French translation was added, and the item is now hidden from StuffedFloors' floor list as originally intended.
+
+Safe to add to an ongoing save - that is what it is for. Removing it mid-save turns any generic items still lying around into the same missing-reference errors it was there to absorb, so destroy them first.</description>
+  <modDependencies>
+    <li>
+      <packageId>Ludeon.RimWorld</packageId>
+      <displayName>Core</displayName>
+      <steamWorkshopUrl isNull="True" />
+      <downloadUrl isNull="True" />
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>Ludeon.RimWorld</li>
+    <li IfModActive="brrainz.harmony">brrainz.harmony</li>
+  </loadAfter>
+  <incompatibleWith>
+    <li>Ogliss.PerfectlyGenericItem</li>
+  </incompatibleWith>
+</ModMetaData>
