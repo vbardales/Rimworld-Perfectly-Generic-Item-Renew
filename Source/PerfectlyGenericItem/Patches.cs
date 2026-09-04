@@ -6,10 +6,10 @@ using Verse;
 
 namespace PerfectlyGenericItem
 {
-    // L'objet generique est une "stuff" par ses stuffProps, sans quoi il ne
-    // pourrait pas remplacer un mur ou un vetement disparu. Il ne doit pour
-    // autant jamais etre propose comme matiere : ces trois patchs le retirent
-    // de la construction, de la generation de bases et des recompenses.
+    // The generic item is a stuff, through its stuffProps, or it could not stand
+    // in for a wall or a garment whose material is gone. It must nevertheless
+    // never be offered as a material: these three patches keep it out of
+    // construction, out of generated bases and out of quest rewards.
 
     [HarmonyPatch(typeof(StuffProperties), nameof(StuffProperties.CanMake))]
     public static class PGI_StuffProperties_CanMake_Patch
@@ -53,9 +53,9 @@ namespace PerfectlyGenericItem
         }
     }
 
-    // Le coeur du mod : toute ThingDef que la sauvegarde reclame et que la liste
-    // de mods courante ne fournit plus est relue comme l'objet generique, au lieu
-    // d'etre perdue avec un message d'erreur.
+    // The heart of the mod: any ThingDef the save asks for that the current mod
+    // list no longer provides is read back as the generic item, instead of being
+    // lost with an error message.
     [HarmonyPatch(typeof(BackCompatibility), nameof(BackCompatibility.BackCompatibleDefName))]
     public static class PGI_BackCompatibility_BackCompatibleDefName_Patch
     {
@@ -63,9 +63,9 @@ namespace PerfectlyGenericItem
         [HarmonyPriority(Priority.Last)]
         public static void Postfix(Type defType, string defName, bool forDefInjections, ref string __result)
         {
-            // Les injections de traduction passent par le meme point d'entree.
-            // Y repondre "PerfectlyGenericItem" ferait ecrire les libelles d'une
-            // def absente par-dessus ceux de l'objet generique.
+            // Translation injections come through the same entry point. Answering
+            // "PerfectlyGenericItem" here would write a missing def's labels over
+            // those of the generic item.
             if (forDefInjections || defType != typeof(ThingDef))
             {
                 return;
@@ -74,7 +74,7 @@ namespace PerfectlyGenericItem
             {
                 return;
             }
-            // Ne pas ecraser une conversion de compatibilite qui, elle, a abouti.
+            // Do not override a compatibility conversion that did succeed.
             if (!__result.NullOrEmpty() && GenDefDatabase.GetDefSilentFail(defType, __result, false) != null)
             {
                 return;

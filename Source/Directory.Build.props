@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <!--
-      Les intermediaires de compilation sortent du dossier du mod. L'uploader Workshop de RimWorld
-      envoie le dossier entier (SteamUGC.SetItemContent sur la racine, aucune exclusion possible) :
-      laisser obj/ dedans, c'est publier l'Assembly-CSharp.dll de reference, donc redistribuer le
-      code du jeu. Doit rester dans un Directory.Build.props : la restauration NuGet lit cette
-      propriete avant le csproj.
+      Build intermediates are sent outside the mod folder. RimWorld's Workshop uploader sends the
+      whole folder (SteamUGC.SetItemContent on its root, with no exclusion possible): leaving obj/
+      inside it means publishing the publicised reference Assembly-CSharp.dll, and so redistributing
+      the game's own code. This has to stay in a Directory.Build.props: NuGet restore reads the
+      property before the csproj is evaluated.
     -->
     <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\..\.build\obj\PerfectlyGenericItemPatched\</BaseIntermediateOutputPath>
     <BaseOutputPath>$(MSBuildThisFileDirectory)..\..\.build\bin\PerfectlyGenericItemPatched\</BaseOutputPath>

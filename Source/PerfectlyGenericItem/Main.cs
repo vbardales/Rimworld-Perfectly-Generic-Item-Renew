@@ -19,8 +19,8 @@ namespace PerfectlyGenericItem
             PatchStuffedFloors(harmony);
         }
 
-        // Compatibilite facultative : StuffedFloors dresse la liste des matieres
-        // utilisables en sol, l'objet generique n'y a rien a faire.
+        // Optional compatibility: StuffedFloors builds the list of materials a
+        // floor can be made of, and the generic item has no business in it.
         private static void PatchStuffedFloors(Harmony harmony)
         {
             Type controller = GenTypes.GetTypeInAnyAssembly("StuffedFloors.Controller", "StuffedFloors");
@@ -39,8 +39,8 @@ namespace PerfectlyGenericItem
                 Log.Warning(Prefix + "patch method " + nameof(StuffedFloors_GetStuffDefsFor_Postfix) + " is null");
                 return;
             }
-            // Passe bien en postfix : la methode lit __result, qui n'existe pas
-            // encore en prefix.
+            // Deliberately a postfix: the method reads __result, which does not
+            // exist yet in a prefix.
             if (harmony.Patch(target, postfix: new HarmonyMethod(postfix)) == null)
             {
                 Log.Warning(Prefix + "StuffedFloors.Controller patch failed to apply");

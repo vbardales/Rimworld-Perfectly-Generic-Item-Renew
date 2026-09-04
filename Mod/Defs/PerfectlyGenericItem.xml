@@ -41,13 +41,13 @@
         <li>Metallic</li>
       </categories>
       <commonality>-0.00</commonality>
-      <!-- 1.6 : exclut la matiere de toute generation automatique (murs de bases
-           generees, recompenses de quete). Remplace le patch Harmony sur
-           BaseGenUtility.IsCheapWallStuff, methode supprimee en 1.6. -->
+      <!-- 1.6: keeps the material out of every automatic generation pass (walls of
+           generated settlements, quest rewards). Replaces the Harmony patch on
+           BaseGenUtility.IsCheapWallStuff, a method removed in 1.6. -->
       <allowedInStuffGeneration>false</allowedInStuffGeneration>
       <color>(56,168,59)</color>
       <constructEffect>ConstructMetal</constructEffect>
-      <!-- 1.6 : StuffProperties.soundImpactStuff a ete renomme soundImpactBullet. -->
+      <!-- 1.6: StuffProperties.soundImpactStuff was renamed soundImpactBullet. -->
       <soundImpactBullet>BulletImpact_Metal</soundImpactBullet>
       <soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
       <soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>

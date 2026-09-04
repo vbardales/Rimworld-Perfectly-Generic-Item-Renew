@@ -35,7 +35,31 @@ Three defects were fixed along the way, which is why this is "Patched" rather th
 
 A French translation was added, and the item is now hidden from StuffedFloors' floor list as originally intended.
 
-Safe to add to an ongoing save - that is what it is for. Removing it mid-save turns any generic items still lying around into the same missing-reference errors it was there to absorb, so destroy them first.</description>
+Safe to add to an ongoing save - that is what it is for. Removing it mid-save turns any generic items still lying around into the same missing-reference errors it was there to absorb, so destroy them first.
+
+AI-GENERATED
+
+The 1.6 update work and this description were written with Claude Code (Anthropic), and the mod icon generated with an image model, under human direction, review and in-game testing. Stated openly: designing with these tools is my job. The mod's own design and code remain Ogliss'.
+
+LICENCE
+
+Ogliss' mod declares no licence, so this update carries none either - relicensing someone else's code is not mine to do. It follows the established Workshop practice for reviving abandoned mods: explicit credit, a link to the source mod, and immediate removal on the author's request.
+
+THANKS
+
+Ogliss, for the mod, and MercuryDoll, for whom it was written.
+
+Ludeon Studios, for the back-compatibility chain this mod hooks into.
+
+Andreas Pardeike, for Harmony.
+
+Claude Code (Anthropic).
+
+Full attribution, including what was taken and what was fixed: https://github.com/vbardales/Rimworld-Perfectly-Generic-Item-Patched/blob/main/ATTRIBUTION.md
+
+ADOPTION
+
+If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.</description>
   <modDependencies>
     <li>
       <packageId>Ludeon.RimWorld</packageId>

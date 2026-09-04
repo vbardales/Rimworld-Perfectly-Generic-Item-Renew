@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<LanguageData>
-  <PGI_RemoveOption>Disparition automatique des objets generiques</PGI_RemoveOption>
-  <PGI_RemoveOptionToolTip>Si l'option est activee, les objets parfaitement generiques disparaissent au bout de quelques secondes de jeu.</PGI_RemoveOptionToolTip>
-</LanguageData>

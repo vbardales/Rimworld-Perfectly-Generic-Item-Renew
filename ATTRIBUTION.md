@@ -1,46 +1,47 @@
 # Perfectly Generic Item Patched — attribution
 
-Mise a jour en 1.6 de **Perfectly Generic Item**
-(https://steamcommunity.com/sharedfiles/filedetails/?id=2169353373), par
-**Ogliss**, ecrit pour MercuryDoll. Reste en 1.4.
+A 1.6 update of **Perfectly Generic Item**
+(https://steamcommunity.com/sharedfiles/filedetails/?id=2169353373), by **Ogliss**,
+written for MercuryDoll. It stays on 1.4.
 
-`packageId` d'origine : `Ogliss.PerfectlyGenericItem`.
+Original `packageId`: `Ogliss.PerfectlyGenericItem`.
 
-**La conception et le code sont d'Ogliss.** Ce depot n'ajoute aucune
-fonctionnalite : il recompile l'assemblage contre la 1.6, remplace le seul point
-d'accroche disparu, et corrige trois defauts — d'ou le suffixe « Patched »
-plutot qu'un simple « 1.6 ».
+**The design and the code are Ogliss'.** This repository adds no feature: it
+recompiles the assembly against 1.6, replaces the one hook that disappeared, and
+fixes three defects — hence the "Patched" suffix rather than a plain "1.6".
 
 ## Licence
 
-**Aucune licence declaree** : pas de fichier `LICENSE` dans le mod, et la
-description Steam tient en une phrase, sans mention de reutilisation. La
-republication suit donc l'usage etabli des reprises de mods abandonnes sur le
-Workshop — credit explicite a l'auteur d'origine, lien vers le mod source, et
-retrait immediat sur simple demande de sa part. C'est dit noir sur blanc dans
-la description du mod, pas seulement ici.
+**No licence is declared** upstream: there is no `LICENSE` file in the mod, and its
+Steam description is one sentence long, with no reuse statement. This repository
+therefore carries no licence of its own — relicensing someone else's code is not
+mine to do. It follows the established Workshop practice for reviving abandoned
+mods instead: explicit credit to the original author, a link to the source mod, and
+immediate removal on their request. That is stated in the mod's own description, not
+only here.
 
-## Ce qui a ete repris
+## What was taken
 
-| Element | Source |
+| Item | Source |
 | --- | --- |
-| `PGIThingDefOf`, les quatre patchs Harmony, `PGICompRemover`, `PGIMod`, `PGISettings`, `Main` | `1.4/Assemblies/PerfectlyGenericItem.dll`, decompile |
-| `Defs/PerfectlyGenericItem.xml` | racine du mod |
-| Textures `PGI_single` | racine du mod |
-| Clefs anglaises et japonaises | `Languages/` |
+| `PGIThingDefOf`, the four Harmony patches, `PGICompRemover`, `PGIMod`, `PGISettings`, `Main` | `1.4/Assemblies/PerfectlyGenericItem.dll`, decompiled |
+| `Defs/PerfectlyGenericItem.xml` | mod root |
+| `PGI_single` textures | mod root |
+| `About/Preview.png` | mod root |
+| English and Japanese keys | `Languages/` |
 
-**L'espace de noms, le nom d'assemblage `PerfectlyGenericItem` et le `defName`
-`PerfectlyGenericItem` sont conserves.** La def declare
-`PerfectlyGenericItem.PGICompRemover` en `compClass`, RimWorld enregistre les
-reglages sous le nom de la classe `Mod`, et le `defName` est ce que les
-sauvegardes venant de la version d'Ogliss contiennent deja. Seuls le nom
-affiche et le `packageId` changent, comme le veut la convention des reprises.
+**The namespace, the assembly name `PerfectlyGenericItem` and the `defName`
+`PerfectlyGenericItem` are all kept.** The def declares
+`PerfectlyGenericItem.PGICompRemover` as its `compClass`, RimWorld stores mod
+settings under the name of the `Mod` class, and the `defName` is what saves coming
+from Ogliss' version already contain. Only the displayed name and the `packageId`
+change, as the convention for revivals asks.
 
-## Ce que la 1.6 a demande de changer
+## What 1.6 required
 
-Le mod n'etait pas seulement signale en rouge : il etait **mort**. `PatchAll`
-applique les quatre patchs en un seul appel, l'un d'eux visait une methode
-disparue, et l'exception a emporte tout le constructeur statique :
+The mod was not merely flagged red: it was **dead**. `PatchAll` applies its four
+patches in a single call, one of them targeted a method that no longer exists, and
+the exception took the whole static constructor down with it:
 
 ```
 Error in static constructor of PerfectlyGenericItem.Main:
@@ -48,15 +49,15 @@ Error in static constructor of PerfectlyGenericItem.Main:
   PGI_BaseGenUtility_IsCheapWallStuff_Patch::Postfix(ThingDef d, bool& __result)
 ```
 
-Le patch sur `BackCompatibility.BackCompatibleDefName` — c'est-a-dire la
-fonction meme du mod — ne s'appliquait donc jamais.
+So the patch on `BackCompatibility.BackCompatibleDefName` — the mod's entire
+purpose — never applied at all.
 
-### `BaseGenUtility.IsCheapWallStuff` a disparu
+### `BaseGenUtility.IsCheapWallStuff` is gone
 
-La methode n'existe plus en 1.6. Elle servait a ecarter l'objet generique des
-murs de bases generees. En 1.6, ce filtrage passe par
-`GenStuff.AllowedStuffsFor(..., checkAllowedInStuffGeneration: true)`, qui teste
-`stuffProps.allowedInStuffGeneration` :
+The method no longer exists in 1.6. It was used to keep the generic item out of the
+walls of generated settlements. In 1.6 that filtering goes through
+`GenStuff.AllowedStuffsFor(..., checkAllowedInStuffGeneration: true)`, which tests
+`stuffProps.allowedInStuffGeneration`:
 
 ```csharp
 if (thingDef.IsStuff && ... && thingDef.stuffProps.CanMake(td))
@@ -65,46 +66,45 @@ if (thingDef.IsStuff && ... && thingDef.stuffProps.CanMake(td))
     if (!checkAllowedInStuffGeneration || thingDef.stuffProps.allowedInStuffGeneration)
 ```
 
-Le patch a donc ete supprime et remplace par
-`<allowedInStuffGeneration>false</allowedInStuffGeneration>` dans les
-`stuffProps` de la def — le mecanisme que la 1.6 emploie a sa place, sans
-Harmony. `RandomCheapWallStuff`, `TryRandomInexpensiveFloor` et
-`BuildCostsAllowedInStuffGen` passent tous par la.
+The patch was therefore removed and replaced with
+`<allowedInStuffGeneration>false</allowedInStuffGeneration>` in the def's
+`stuffProps` — the mechanism 1.6 uses in its place, without Harmony.
+`RandomCheapWallStuff`, `TryRandomInexpensiveFloor` and `BuildCostsAllowedInStuffGen`
+all go through it.
 
-### `StuffProperties.soundImpactStuff` a ete renomme
+### `StuffProperties.soundImpactStuff` was renamed
 
-Le champ s'appelle `soundImpactBullet` en 1.6. L'ancien nom produisait une
-erreur XML a chaque chargement :
+The field is called `soundImpactBullet` in 1.6. The old name produced an XML error
+on every load:
 
 ```
 XML error: <soundImpactStuff>BulletImpact_Metal</soundImpactStuff> doesn't
 correspond to any field in type StuffProperties.
 ```
 
-### Le reste tient
+### The rest holds
 
-Les trois autres cibles existent en 1.6 avec la meme signature, et sont
-recompilees telles quelles. Chaque patch les designe desormais par `nameof`,
-donc leur disparition future casserait la compilation au lieu de casser le mod
-au chargement :
+The three remaining targets exist in 1.6 with the same signature, and were
+recompiled unchanged. Each patch now names them through `nameof`, so a future
+disappearance would break the build instead of breaking the mod at load time:
 
-| Cible | Signature 1.6 |
+| Target | 1.6 signature |
 | --- | --- |
 | `StuffProperties.CanMake` | `public bool CanMake(BuildableDef t)` |
 | `SketchGenUtility.IsStuffAllowed` | `public static bool IsStuffAllowed(ThingDef stuff, bool, Map, bool, ThingDef)` |
 | `ThingSetMakerUtility.IsDerpAndDisallowed` | `public static bool IsDerpAndDisallowed(ThingDef thing, ThingDef stuff, QualityGenerator?)` |
 | `BackCompatibility.BackCompatibleDefName` | `public static string BackCompatibleDefName(Type defType, string defName, bool forDefInjections = false, XmlNode node = null)` |
 
-Les noms de parametres employes par les postfixes (`stuff`, `defType`,
-`defName`) sont inchanges : Harmony les lie par nom, pas par position.
+The parameter names the postfixes use (`stuff`, `defType`, `defName`) are unchanged:
+Harmony binds them by name, not by position.
 
-## Les defauts corriges
+## The defects that were fixed
 
-### 1. Les injections de traduction etaient traitees comme des objets perdus
+### 1. Translation injections were treated as lost items
 
-`BackCompatibleDefName` sert a deux choses : relire une sauvegarde, et resoudre
-les `DefInjected` d'une traduction. Le postfix d'origine ne faisait pas la
-difference :
+`BackCompatibleDefName` serves two purposes: reading a save back, and resolving the
+`DefInjected` entries of a translation. The original postfix did not tell them
+apart:
 
 ```csharp
 if (GenDefDatabase.GetDefSilentFail(defType, defName, false) == null && defType == typeof(ThingDef))
@@ -113,37 +113,37 @@ if (GenDefDatabase.GetDefSilentFail(defType, defName, false) == null && defType 
 }
 ```
 
-Consequence : pour toute def absente citee par un fichier de traduction, le jeu
-injectait ses libelles **dans l'objet generique**, qui se retrouvait renomme au
-petit bonheur. Le parametre `forDefInjections` est desormais teste et les
-injections sont laissees tranquilles.
+The consequence: for any missing def named by a translation file, the game wrote its
+labels **onto the generic item**, which ended up renamed at random. The
+`forDefInjections` parameter is now tested, and injections are left alone.
 
-### 2. Les conversions de compatibilite reussies etaient ecrasees
+### 2. Successful compatibility conversions were overridden
 
-Le test portait sur `defName`, l'entree, jamais sur `__result`, la sortie. Quand
-la chaine de compatibilite de RimWorld avait su renommer une ancienne def en une
-def bien presente, le postfix repondait quand meme « objet generique » : un
-objet recuperable etait perdu. Le postfix ne se declenche plus que si `__result`
-ne resout rien non plus.
+The test looked at `defName`, the input, and never at `__result`, the output. When
+RimWorld's own compatibility chain had managed to rename an old def into one that is
+present, the postfix still answered "generic item": a recoverable thing was lost.
+The postfix now only fires when `__result` resolves to nothing either.
 
-### 3. Le patch StuffedFloors etait enregistre en prefix
+### 3. The StuffedFloors patch was registered as a prefix
 
 ```csharp
 harmony.Patch(methodInfo, new HarmonyMethod(method));
 ```
 
-Le deuxieme parametre positionnel de `Harmony.Patch` est le **prefix**. La
-methode passee est pourtant ecrite en postfix : elle lit `ref List<ThingDef>
-__result`, qui n'existe pas encore avant l'appel de la methode d'origine. Le
-retrait de l'objet generique de la liste des sols de StuffedFloors n'a donc
-jamais eu lieu, et aurait leve une `NullReferenceException` si la liste avait
-ete touchee. C'est desormais `postfix:`, nomme explicitement.
+The second positional parameter of `Harmony.Patch` is the **prefix**. The method
+passed to it is written as a postfix, though: it reads `ref List<ThingDef> __result`,
+which does not exist yet before the original method runs. So the generic item was
+never removed from StuffedFloors' floor list, and the patch would have thrown a
+`NullReferenceException` had the list been touched. It is now `postfix:`, named
+explicitly.
 
-Au passage, `AccessTools.Method` etait appele meme quand StuffedFloors est
-absent, ce qui journalise une erreur Harmony sur un type nul. Le type est
-teste avant.
+Along the way, `AccessTools.Method` was being called even when StuffedFloors is
+absent, which logs a Harmony error about a null type. The type is now tested first.
 
-## Ajout
+## Additions
 
-`Languages/French/` — clefs des reglages et libelles de l'objet. Rien d'autre
-n'a ete ajoute.
+- `Languages/French/` — settings keys and the item's labels.
+- `About/ModIcon.png`, generated with an image model for this repository. Ogliss'
+  mod ships none.
+
+Nothing else was added.

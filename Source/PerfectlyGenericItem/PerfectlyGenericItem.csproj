@@ -3,10 +3,10 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net48</TargetFramework>
-    <!-- Nom d'assemblage et espace de noms conserves : la def reference
-         PerfectlyGenericItem.PGICompRemover en compClass, et RimWorld enregistre
-         les reglages sous le nom de la classe Mod. Les renommer perdrait les
-         reglages et casserait les sauvegardes venant de la version d'Ogliss. -->
+    <!-- Assembly name and namespace are kept as they were: the def declares
+         PerfectlyGenericItem.PGICompRemover as its compClass, and RimWorld stores
+         mod settings under the name of the Mod class. Renaming either would lose
+         the settings and break saves coming from Ogliss' version. -->
     <AssemblyName>PerfectlyGenericItem</AssemblyName>
     <RootNamespace>PerfectlyGenericItem</RootNamespace>
     <LangVersion>latest</LangVersion>
@@ -15,7 +15,7 @@
     <DebugType>none</DebugType>
     <Configuration>Release</Configuration>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>..\..\Assemblies\</OutputPath>
+    <OutputPath>..\..\Mod\Assemblies\</OutputPath>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
