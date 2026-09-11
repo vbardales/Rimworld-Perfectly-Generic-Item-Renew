@@ -7,6 +7,11 @@ Source/bin/
 Source/**/obj/
 Source/**/bin/
 
+# Claude Code session worktrees and their local settings. A session creates its worktree in
+# the folder it is working in, and each one is a full copy of the repository it came out of.
+# Never shared, and never published.
+.claude/
+
 # Development environments
 .vs/
 .vscode/
