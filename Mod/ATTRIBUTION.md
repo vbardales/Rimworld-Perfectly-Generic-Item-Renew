@@ -27,6 +27,7 @@ only here.
 | `PGIThingDefOf`, the four Harmony patches, `PGICompRemover`, `PGIMod`, `PGISettings`, `Main` | `1.4/Assemblies/PerfectlyGenericItem.dll`, decompiled |
 | `Defs/PerfectlyGenericItem.xml` | mod root |
 | `PGI_single` textures | mod root |
+| `About/Preview.png` | mod root |
 | English and Japanese keys | `Languages/` |
 
 **The namespace, the assembly name `PerfectlyGenericItem` and the `defName`
