@@ -23,6 +23,9 @@ used by generated bases, and never handed out as a quest reward.
 
 Available in English, Japanese (both Ogliss') and French.
 
+**Harmony is required.** Everything the mod does, it does through Harmony patches, and neither
+RimWorld nor this mod ships the library. Without it the mod loads and does nothing at all.
+
 Safe to add to an ongoing save — that is what it is for. Removing it mid-save turns any generic
 items still lying around into the same missing-reference errors it was there to absorb, so destroy
 them first.

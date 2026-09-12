@@ -22,6 +22,12 @@ from the fixes below.
 - A French translation: the two settings keys and the item's own labels.
 - `incompatibleWith` on the original `Ogliss.PerfectlyGenericItem`, so the two cannot run together.
 - A mod icon, generated with an image model for this repository. Ogliss' mod ships none.
+- `brrainz.harmony` declared in `modDependencies`. RimWorld ships no Harmony of its own -
+  there is no `0Harmony.dll` among the 106 assemblies of `Managed/` - and this mod does not
+  bundle one either. Without the Harmony mod loaded, the static constructor throws and the
+  entire point of the mod goes with it: the same silent death 1.6 had already caused once. A
+  `loadAfter` guarded by `IfModActive` was standing in for a dependency, and a loadAfter never
+  asks the player to install anything.
 
 ### Fixed
 
@@ -43,6 +49,13 @@ from the fixes below.
 - **`StuffProperties.soundImpactStuff` was renamed `soundImpactBullet` in 1.6.** The old name
   threw an XML error on every load.
 - **The French translation carried no accents.** Its labels and tooltips are now written properly.
+- **The description claimed a test in game.** It said the work was done "under human
+  direction, review and in-game testing"; the mod has never been launched. Steam freezes a
+  description at the first upload and never reprints it, so the sentence would have stayed
+  false for as long as the mod exists.
+- **The attribution table gave `About/Preview.png` as taken from the mod root.** That stopped
+  being the whole truth when the showcase pass laid the mod name over the author's image. The
+  row now says what was done to it, in both copies of the file.
 
 ### Changed
 
