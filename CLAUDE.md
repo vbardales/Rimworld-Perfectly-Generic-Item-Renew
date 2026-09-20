@@ -1,142 +1,139 @@
-# Perfectly Generic Item Patched — notes de travail
+# Perfectly Generic Item Patched (unofficial) — working notes
 
-Dépôt **autonome**, un seul mod. Il n'appartient plus au monorepo
-`C:\Users\nelim\Documents\rimworld`, qui l'exclut par son `.gitignore` et n'en suit plus aucun
-fichier. Un seul remote : `origin` → https://github.com/vbardales/Rimworld-Perfectly-Generic-Item-Patched,
-**public**. La branche est `main`, pas `master` : la règle du `master` ne valait que pour le monorepo.
+This is a standalone, single-mod repository. It is no longer part of
+`C:\Users\nelim\Documents\rimworld`: the parent repository ignores it and tracks none
+of its files. The only remote is `origin`, pointing to
+https://github.com/vbardales/Rimworld-Perfectly-Generic-Item-Patched (public).
+The branch is `main`; the old `master` rule applied only to the monorepo.
 
-| | |
-|---|---|
-| Mod | Perfectly Generic Item Patched |
-| packageId | `nelim.perfectlygenericitempatched` |
-| Version cible | RimWorld 1.6, et elle seule |
-| Auteur d'origine | Ogliss, pour MercuryDoll — [Workshop 2169353373](https://steamcommunity.com/sharedfiles/filedetails/?id=2169353373), resté en 1.4 |
-| Licence de la source | aucune, nulle part — voir `ATTRIBUTION.md` |
-| Contenu | une `ThingDef`, `PerfectlyGenericItem`, quatre patchs Harmony et une fenêtre de réglages |
-| Dépendances | Harmony (`brrainz.harmony`) et Core, toutes deux déclarées. StuffedFloors est facultatif |
+| Item | Value |
+| --- | --- |
+| Mod | Perfectly Generic Item Patched (unofficial) |
+| packageId | nelim.perfectlygenericitempatched |
+| Target | RimWorld 1.6 only |
+| Original author | Ogliss, for MercuryDoll; Workshop 2169353373, installed source supports up to 1.4 |
+| Source license | None declared in the installed source; see ATTRIBUTION.md |
+| Content | One ThingDef, four Harmony patches, optional StuffedFloors postfix and settings |
+| Required dependencies | Harmony (brrainz.harmony) and Core |
 
-## Ce que fait le mod, en une phrase
+## Purpose
 
-Quand un mod disparaît d'une partie en cours, `BackCompatibility.BackCompatibleDefName` est appelé
-pour chaque def que la sauvegarde réclame sans la trouver ; le postfix du mod répond
-« PerfectlyGenericItem » et l'objet perdu revient en bloc vert au lieu de s'évaporer avec une erreur.
-Tout le reste — l'objet comme matériau, les trois patchs qui l'excluent des menus, le réglage de
-disparition automatique — n'existe que pour rendre ce remplacement supportable.
+When a mod is removed from an existing save, `BackCompatibility.BackCompatibleDefName`
+resolves definitions requested by the save. This mod substitutes `PerfectlyGenericItem`
+for missing ThingDefs. The generic item can also replace a missing material. The
+material filters and automatic despawn setting support this recovery behavior.
 
-## Disposition
+## Layout
 
-Le mod est dans **`Mod/`**, pas à la racine, et c'est `Mod/` que vise la jonction de
-`RimWorld\Mods`. `SteamUGC.SetItemContent` envoie le dossier **entier**, sans exclusion possible :
-ce qui ne doit pas partir sur le Workshop n'est pas dans `Mod/`, et il n'y a pas d'autre parade.
+`Mod/` is the distributed folder and the intended RimWorld/Mods junction target.
+The Workshop uploader sends that whole directory, without exclusions.
 
-- `Mod/` — publié : `About/`, `Assemblies/`, `Defs/`, `Languages/`, `Textures/`
-- `Source/` — jamais publié. `OutputPath` pointe vers `..\..\Mod\Assemblies\`
-- `Art/` — jamais publié : les images pleine résolution dont la vitrine est découpée
-- `STATUS.md`, `CLAUDE.md`, `README.md`, `CHANGELOG.md` — racine, donc hors du Workshop
+- `Mod/`: About, Assemblies, Defs, Languages, Textures and distributed attribution.
+- `Source/`: C# source, never distributed. The project outputs to `Mod/Assemblies/`.
+- `.build/`: ignored build intermediates, inside this standalone repository and outside Mod.
+- `Art/`: image sources and generation records, never distributed.
+- `Tests/` and `TEST_SCENARIOS.md`: technical tests, results and in-game validation plan.
+- Root documentation, including this file and STATUS.md, stays outside Mod.
 
-`ATTRIBUTION.md` existe **en double**, à la racine et dans `Mod/`, volontairement : l'un sert le
-dépôt, l'autre part avec le mod. Les deux doivent rester identiques
-(`diff ATTRIBUTION.md Mod/ATTRIBUTION.md`). La copie de `Mod/` est celle que Steam envoie ; elle
-s'était déjà désynchronisée une fois, d'une ligne du tableau des emprunts.
+Keep the root and distributed ATTRIBUTION.md copies identical. They previously drifted
+by one row in the source table. Intermediate output contains game reference assemblies;
+never copy it into Mod or redistribute it with the mod.
 
-## La règle du portage
+## Porting constraints
 
-Le code et le dessin sont d'Ogliss. Ce dépôt ne contient que le passage en 1.6 et trois
-corrections — c'est ce que dit le suffixe « Patched ».
+Ogliss owns the original design and code. Preserve credit and the removal-on-request
+commitment. `silent` is a workflow classification, not permission to redistribute.
+The public unofficial suffix and exact notice are required by PUBLISHING.md.
+Do not invent a license for third-party content.
 
-- **Ne rien ajouter.** Aucune fonctionnalité nouvelle. Les seuls ajouts sont la traduction
-  française, l'icône et la vitrine.
-- **Le namespace, le nom d'assemblage `PerfectlyGenericItem` et le `defName` ne se renomment
-  pas.** La def déclare `PerfectlyGenericItem.PGICompRemover` en `compClass`, RimWorld range les
-  réglages sous le nom de la classe `Mod`, et le `defName` est ce que contiennent déjà les
-  sauvegardes venues de la version d'Ogliss. Seuls le nom affiché et le `packageId` changent.
-- **Les cibles des patchs se nomment par `nameof`**, jamais par chaîne. C'est exactement ce qui a
-  tué le mod en 1.6 : `PatchAll` applique les quatre patchs d'un coup, une cible avait disparu, et
-  l'exception a emporté le constructeur statique entier — donc aussi le patch qui est la raison
-  d'être du mod. Avec `nameof`, la prochaine disparition casse la compilation au lieu du mod.
-- **`PGISettings.replaceFactions` ne sert à rien**, et on le laisse : il est sauvegardé, aucun code
-  ne le lit, aucune case ne l'affiche. C'est un reste d'Ogliss, inoffensif, et le supprimer
-  changerait le fichier de réglages d'un joueur venu de sa version pour rien.
-- **Le patch StuffedFloors reste facultatif** : le type est cherché d'abord, et on ne patche pas
-  si le mod est absent. Il est posé en `postfix:` nommé, jamais en positionnel — le deuxième
-  paramètre de `Harmony.Patch` est le préfixe, et c'est le défaut qui a fait qu'il n'a jamais rien
-  retiré chez Ogliss.
+Keep changes focused on porting, defect fixes and the required settings/localization
+workflow. Do not add unrelated features. The original additions were French resources,
+the icon and the composed Preview. The 2026-09-13 fixes add the required optional settings
+shortcut and translated category, not a new gameplay system.
 
-## Construire
+Do not rename the namespace, assembly or `PerfectlyGenericItem` defName: the compClass,
+existing saves and stored settings depend on those identities. The public packageId and
+displayed name are intentionally distinct from upstream. Use `nameof` for Harmony targets
+so a removed method fails compilation instead of breaking startup silently.
 
-```
+`PGISettings.replaceFactions` is unused legacy serialized data. Keep it for compatibility;
+no UI control is warranted. The useful `removePGI` setting is global, false by default,
+and read on each rare tick. Disabling despawning does not restore previously removed items.
+
+The StuffedFloors integration stays optional: look up the type before its method and skip
+when absent. Register the patch with named `postfix:`; the second positional Harmony.Patch
+argument is a prefix and previously caused the broken result handling.
+
+Settings use the native Mod options page. The MainButtons shortcut opens the same
+Dialog_ModSettings instance type for PGIMod.Instance. Native `buttonVisible=false` keeps
+it hidden while permitting customization tools to reveal it. Never force-hide it every frame.
+
+## Build
+
+```powershell
 dotnet build Source/PerfectlyGenericItem/PerfectlyGenericItem.csproj -c Release
 ```
 
-La DLL tombe directement dans `Mod/Assemblies/`. `Deterministic` est activé : une reconstruction
-sans changement de source rend le **même fichier bit pour bit** — vérifié le 2026-09-12, md5
-`36444a4f7abd5942c135016bcbd29297` avant et après. Donc une DLL qui change au build alors qu'on n'a
-touché à rien est un signal, pas du bruit.
+The DLL is emitted to Mod/Assemblies. Deterministic compilation is enabled. Historically,
+on 2026-09-12, rebuilding unchanged code produced MD5 `36444a4f7abd5942c135016bcbd29297`.
+The initial 2026-09-13 audit also reproduced the shipped DLL byte for byte; its SHA256 and
+command remain in STATUS.md. Those hashes describe the historical source, not later fixes.
+A changed DLL from unchanged sources warrants investigation.
 
-Les intermédiaires partent dans `..\.build\`, **hors du dossier**, par le `Directory.Build.props`.
-Ce n'est pas du rangement : `obj/` contient l'`Assembly-CSharp.dll` publicisé du jeu, et le laisser
-dans le dossier reviendrait à redistribuer le code de Ludeon sur le Workshop.
+Directory.Build.props now sends intermediates to this repository's ignored `.build/`.
+The older configuration sent them to the parent's `.build/`; that historical location
+was used for the initial audit's cached restore. Neither location belongs in Mod.
 
-## Tester
+## Testing
 
-**Ne jamais lancer RimWorld moi-même.** Préparer, puis lui demander de lancer et de coller le
-journal : `C:\Users\nelim\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log`.
+Never launch RimWorld yourself. The user runs the in-game scenarios and supplies the log:
+`C:\Users\nelim\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log`.
+Do not describe a build or headless test as in-game validation.
 
-Le mod ne se teste pas en regardant un menu. Ce qu'il fait ne se produit qu'**au chargement d'une
-sauvegarde à laquelle on a retiré un mod**, et une seule fois. Un scénario minimal : partie avec un
-petit mod d'objets, poser quelques-uns de ses objets, sauvegarder, désactiver ce mod, recharger.
-Les objets doivent revenir en blocs verts, et le journal ne doit plus porter de
-« could not load reference to ThingDef ».
+The original minimal scenario: create a save with an item mod, place its items, save,
+disable that mod and reload. The missing items should become green blocks without
+missing ThingDef reference errors. A menu-only check cannot validate that behavior.
+The expanded plan is in TEST_SCENARIOS.md. Automated test scope and actual outcomes
+are recorded in Tests/RESULTS.md; unexecuted game scenarios remain pending.
 
-## Vérifier avant de commiter
+## XML checks
 
-Les quatre contrôleurs vivent dans le monorepo et s'appellent d'ici par chemin relatif. PowerShell
-refuse les scripts sans `-ExecutionPolicy Bypass` sur cette machine :
+The shared validators live in the parent repository:
 
-```
+```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File ..\scripts\Check-XmlFields.ps1 -ModPath Mod -ExtraAssemblies Mod\Assemblies\PerfectlyGenericItem.dll
 powershell -NoProfile -ExecutionPolicy Bypass -File ..\scripts\Check-DefRefs.ps1 -ModPath Mod -Brief
 powershell -NoProfile -ExecutionPolicy Bypass -File ..\scripts\Check-DefInjected.ps1 -TransMod Mod -ExtraAssemblies Mod\Assemblies\PerfectlyGenericItem.dll
 ```
 
-Tous verts le 2026-09-11 : aucun champ XML inconnu, aucune référence de def introuvable, six clés
-de traduction sur six valides. `Check-XmlFields` est celui qui compte ici — c'est lui qui attrape
-un champ renommé, le genre de panne que RimWorld signale sur une ligne et oublie aussitôt.
+The historical 2026-09-11 run found no unknown XML fields, unresolved references or invalid
+translation paths (six keys then). Current results supersede that count. Check-XmlFields
+catches renamed fields such as the soundImpactStuff failure fixed during the 1.6 port.
 
-## `STATUS.md` — à moi de le tenir
+## STATUS.md
 
-`STATUS.md` vit à la racine, jamais dans `Mod/`, pour que Steam ne le reçoive pas. Il est lu par un
-balayage qui passe sur tous les mods, donc **le frontmatter est un format, pas de la prose** : ne
-pas renommer de champ, ne pas en retirer, garder le vocabulaire des autres fiches.
+Keep its front matter field names and the shared workflow vocabulary. Update the stage
+only from evidence, preserve historical results and the sweep-owned `session` identifier.
+Record date, revision, local changes, actual checks and pending verification. The user
+requires the task title to match the retained stage whenever STATUS.md is updated.
 
-C'est moi qui le tiens à jour, sans qu'on me le redemande. Il se met à jour **quand l'état change**,
-pas à la fin de chaque échange : une étape franchie, un défaut trouvé ou corrigé, une image posée,
-un essai en jeu, la publication. `updated:` prend la date et `2026-09-12, the mod's own session`.
-Le champ `session:` ne se touche pas, il vient du balayage et nomme le groupe de sessions.
+## Before publication
 
-Le balayage écrit parfois des champs cassés — une clé avalée par la valeur voisine, une étiquette
-française là où le vocabulaire est anglais. Les réparer au passage plutôt que les recopier.
+No Workshop upload has been recorded. The local `v1.0.0` tag points to the 2026-09-04
+revision and predates the 2026-09-12 fixes. Reconcile releases before publication, preferably
+with a new version; no tag rewrite or publication is authorized by routine fixes.
+Historical notes claimed no downloads; that count was not verified by the audit.
 
-## Reste à faire avant publication
+Final in-game validation is still required. After any future Workshop upload, preserve
+About/PublishedFileId.txt immediately. Steam takes About.xml's description only on first
+creation; later description updates must be made on the Workshop page. An earlier false
+claim of in-game testing was removed on 2026-09-12 before publication.
 
-Le mod est en `1.0.0`, **jamais envoyé sur le Workshop**. Le tag `v1.0.0` et sa release GitHub
-existent depuis le 2026-09-04 et ne contiennent donc pas les corrections du 2026-09-12.
+The governing documents are ../PUBLISHING.md, ../STYLE_RIMWORLD.md, ../MOD_SETTINGS.md and
+../TRANSLATIONS.md. Explicit user workflow clarifications take priority.
 
-1. Trancher le tag : le déplacer sur l'état courant, ou couper un `1.0.1`. Personne n'a téléchargé
-   la release et le mod n'est pas sur Steam, donc les deux se valent — mais cela se décide **avant**
-   l'envoi.
-2. Un essai en jeu, le premier. `tested_on` est vide et tout le `remaining` de `STATUS.md` en dépend.
-3. L'envoi Workshop, puis `Mod/About/PublishedFileId.txt` renvoyé dans le dépôt.
+## Language
 
-La description Steam est **gelée au premier envoi** : `SetItemDescription` ne repasse jamais. Elle
-est donc à relire une dernière fois avant, mot par mot. Elle affirmait un test en jeu qui n'a jamais
-eu lieu ; la phrase est partie le 2026-09-12, avant qu'elle ne devienne définitive.
-
-Les deux guides qui commandent ces étapes vivent hors du dépôt, dans le monorepo :
-`..\STYLE_RIMWORLD.md` pour la vitrine et l'icône, `..\PUBLISHING.md` pour l'envoi.
-
-## Langue
-
-`About.xml`, `README.md`, `CHANGELOG.md`, `ATTRIBUTION.md`, `STATUS.md`, les commentaires du code et
-les messages de commit sont **en anglais** : dépôt public, et un crédit en français ne peut pas être
-lu par celui qu'il crédite. Ce fichier et nos échanges sont en français.
+All tracked documentation, code comments, About metadata and new commit messages are
+English. French language resources and conversation with the user remain French.
+The old exception that left this file in French was removed on 2026-09-13.

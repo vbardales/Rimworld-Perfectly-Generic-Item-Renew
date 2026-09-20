@@ -19,7 +19,7 @@ namespace PerfectlyGenericItem
 
         public override string SettingsCategory()
         {
-            return "Perfectly Generic Item";
+            return "PGI_SettingsCategory".Translate();
         }
 
         public override void DoSettingsWindowContents(Rect rect)
@@ -28,15 +28,11 @@ namespace PerfectlyGenericItem
             {
                 ColumnWidth = rect.width
             };
-            float sectionHeight = Text.LineHeight + listing.verticalSpacing;
             listing.Begin(rect);
-            Listing_Standard section = listing.BeginSection(sectionHeight, 4f, 4f);
-            section.ColumnWidth *= 0.488f;
-            section.CheckboxLabeled(
+            listing.CheckboxLabeled(
                 "PGI_RemoveOption".Translate(),
                 ref settings.removePGI,
                 "PGI_RemoveOptionToolTip".Translate());
-            listing.EndSection(section);
             listing.End();
         }
 

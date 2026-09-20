@@ -1,4 +1,7 @@
-# Perfectly Generic Item Patched 1.6
+# Perfectly Generic Item Patched (unofficial)
+
+UNOFFICIAL. This mod is published without the original author's explicit consent.
+If the original author contacts me to request its removal, I undertake to take it down promptly.
 
 Update of Ogliss' **Perfectly Generic Item** to RimWorld 1.6.
 
@@ -86,3 +89,9 @@ Art/       image sources kept out of the published folder
 
 The Workshop uploader sends the junction target whole, with no exclusion possible, so anything
 that must not ship simply lives outside `Mod/`.
+
+## Settings
+
+Open Mod options -> Perfectly Generic Item Patched. Automatic despawning is global and off by default; it applies on the next rare tick without restarting. Disabling it prevents future despawns but does not restore removed items. A native MainButtons shortcut is available for customization tools to reveal, hidden by default; it opens the same settings dialog. No customization mod is required. RIMMSQOL integration still needs in-game validation.
+
+See [TEST_SCENARIOS.md](TEST_SCENARIOS.md) and [Tests/RESULTS.md](Tests/RESULTS.md) for validation scope.

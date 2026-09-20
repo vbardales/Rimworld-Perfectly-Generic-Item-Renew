@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-  <PGI_RemoveOption>Automatical PGI Despawning</PGI_RemoveOption>
-  <PGI_RemoveOptionToolTip>If enabled, Perfectly Generic Items will despawn after a couple of seconds of gameplay</PGI_RemoveOptionToolTip>
+  <PGI_SettingsCategory>Perfectly Generic Item Patched</PGI_SettingsCategory>
+  <PGI_RemoveOption>Automatically despawn generic items</PGI_RemoveOption>
+  <PGI_RemoveOptionToolTip>Global setting, off by default. When enabled, spawned generic items disappear on their next rare tick (up to 250 game ticks). Changes apply immediately to all saves; no restart is needed. Turning this off prevents further despawns but does not restore items already removed.</PGI_RemoveOptionToolTip>
 </LanguageData>
