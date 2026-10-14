@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-  <PGI_SettingsCategory>Objet parfaitement générique Patched</PGI_SettingsCategory>
+  <PGI_SettingsCategory>Objet parfaitement générique Renew</PGI_SettingsCategory>
   <PGI_RemoveOption>Disparition automatique des objets génériques</PGI_RemoveOption>
   <PGI_RemoveOptionToolTip>Paramètre global, désactivé par défaut. Les objets génériques présents sur la carte disparaissent à leur prochaine mise à jour rare (au plus 250 ticks de jeu). Les changements s’appliquent immédiatement à toutes les sauvegardes, sans redémarrage. Désactiver cette option empêche les disparitions suivantes, mais ne restaure pas les objets déjà retirés.</PGI_RemoveOptionToolTip>
 </LanguageData>

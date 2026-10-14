@@ -2,8 +2,8 @@
 <Defs>
   <MainButtonDef>
     <defName>PGI_Settings</defName>
-    <label>Perfectly Generic Item Patched</label>
-    <description>Open Perfectly Generic Item Patched settings.</description>
+    <label>Perfectly Generic Item Renew</label>
+    <description>Open Perfectly Generic Item Renew settings.</description>
     <workerClass>PerfectlyGenericItem.MainButtonWorker_PGISettings</workerClass>
     <buttonVisible>false</buttonVisible>
     <validWithoutMap>true</validWithoutMap>

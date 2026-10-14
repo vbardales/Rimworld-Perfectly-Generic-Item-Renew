@@ -9,7 +9,7 @@ it in game.
 ### Added
 
 - A hidden MainButtons shortcut to the settings window. It stays invisible until a customization
-  mod (RIMMSQOL and similar) reveals it; Options -> Mods -> Perfectly Generic Item Patched stays
+  mod (RIMMSQOL and similar) reveals it; Options -> Mods -> Perfectly Generic Item Renew stays
   the primary access. French label and description included.
 - A translated settings category name (`PGI_SettingsCategory`) in place of hardcoded English.
 - The "(unofficial)" suffix and notice in the title, About description and README.

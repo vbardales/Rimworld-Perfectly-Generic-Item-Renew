@@ -1,15 +1,15 @@
-# Perfectly Generic Item Patched (unofficial) — working notes
+# Perfectly Generic Item Renew (unofficial) — working notes
 
 This is a standalone, single-mod repository. It is no longer part of
 `C:\Users\nelim\Documents\rimworld`: the parent repository ignores it and tracks none
 of its files. The only remote is `origin`, pointing to
-https://github.com/vbardales/Rimworld-Perfectly-Generic-Item-Patched (public).
+https://github.com/vbardales/Rimworld-Perfectly-Generic-Item-Renew (public).
 The branch is `main`; the old `master` rule applied only to the monorepo.
 
 | Item | Value |
 | --- | --- |
-| Mod | Perfectly Generic Item Patched (unofficial) |
-| packageId | nelim.perfectlygenericitempatched |
+| Mod | Perfectly Generic Item Renew (unofficial) |
+| packageId | nelim.perfectlygenericitemrenew |
 | Target | RimWorld 1.6 only |
 | Original author | Ogliss, for MercuryDoll; Workshop 2169353373, installed source supports up to 1.4 |
 | Source license | None declared in the installed source; see ATTRIBUTION.md |

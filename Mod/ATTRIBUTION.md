@@ -1,4 +1,4 @@
-# Perfectly Generic Item Patched — attribution
+# Perfectly Generic Item Renew — attribution
 
 A 1.6 update of **Perfectly Generic Item**
 (https://steamcommunity.com/sharedfiles/filedetails/?id=2169353373), by **Ogliss**,
@@ -8,7 +8,7 @@ Original `packageId`: `Ogliss.PerfectlyGenericItem`.
 
 **The design and the code are Ogliss'.** This repository adds no feature: it
 recompiles the assembly against 1.6, replaces the one hook that disappeared, and
-fixes three defects — hence the "Patched" suffix rather than a plain "1.6".
+fixes three defects along the way.
 
 ## Licence
 

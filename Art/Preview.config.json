@@ -1,8 +1,8 @@
 {
-  "title":"Perfectly Generic Item Patched (unofficial)",
+  "title":"Perfectly Generic Item Renew (unofficial)",
   "titleSize":38,
   "titleParts":[{"text":"Perfectly Generic"},{"text":"Item","breakBefore":true}],
-  "suffix":"Patched",
+  "suffix":"Renew",
   "tag":"(unofficial)",
   "tagInline":true,
   "copyLines":["Missing modded things become", "perfectly generic items."],

@@ -1,8 +1,8 @@
 ---
-mod:          Perfectly Generic Item Patched (unofficial)
-packageId:    nelim.perfectlygenericitempatched
-repo:         Rimworld-Perfectly-Generic-Item-Patched
-remote:       https://github.com/vbardales/Rimworld-Perfectly-Generic-Item-Patched.git
+mod:          Perfectly Generic Item Renew (unofficial)
+packageId:    nelim.perfectlygenericitemrenew
+repo:         Rimworld-Perfectly-Generic-Item-Renew
+remote:       https://github.com/vbardales/Rimworld-Perfectly-Generic-Item-Renew.git
 visibility:   public
 detached:     yes
 workflow_stage: writeTests[1.0.1]
@@ -29,7 +29,7 @@ remaining:
   - unverified: the despawn setting and the settings shortcut in game, in French and English
   - unverified: the StuffedFloors postfix, not exercisable while StuffedFloors is not installed
   - unverified: Preview palette (Measure-Palette.sh) not run
-  - decision: naming. PUBLISHING.md, "Nommage": a port of a dead mod is named "<name> Renew" (packageId `nelim.perfectlygenericitemrenew`); "Patched" is the private case of a living mod. This mod is public, `silent`, and named Patched. packageId is frozen at publication, nothing is uploaded yet: Virginie decides whether to rename (CLAUDE.md says the distinct name is deliberate)
+  - decision (2026-10-14, Virginie): renamed Patched to Renew, as PUBLISHING.md "Nommage" asks for a port of a dead mod; packageId, repository, name, README title and STATUS `mod` follow. Repository folder still named PerfectlyGenericItemPatched, to rename outside a session
   - unverified: Tests/Program.cs (local test project) is not declared in scripts/LOCAL_SCRIPTS.md (AUDIT.md 7.b: contact the Audit workflow session)
   - unverified: the shipped DLL was rebuilt on 2026-10-14 (SHA256 2141A0A7...CBE63); older hashes below describe past sources
 session:      local_e2e7811e-c9c1-4302-aa88-5765d6926970
@@ -37,7 +37,7 @@ protocols_read_sha: 583ce1259235b54ebacca29e1116689d1d24e589
 updated:      2026-10-14, audit from setupRepo
 ---
 
-# Perfectly Generic Item Patched: status
+# Perfectly Generic Item Renew: status
 
 ## Audit from the start: 2026-10-14
 
@@ -74,7 +74,7 @@ parent checkout was wrong), `*.dds` and `Art/.render/` ignored, `Art/*-original`
   `PGI_remove`). Effect: spawned generic items despawn on their next rare tick (up to 250 ticks),
   applied immediately to all saves, no restart. Turning it off does not restore removed items.
   `replaceFactions` is unused legacy serialized data, kept for compatibility, no control.
-- Access: Options > Mods > Perfectly Generic Item Patched (primary). MainButtons shortcut
+- Access: Options > Mods > Perfectly Generic Item Renew (primary). MainButtons shortcut
   `PGI_Settings`: `buttonVisible=false`, no override of `Visible`, opens the same
   `Dialog_ModSettings` for `PGIMod.Instance`. Neither customization mod nor RIMMSQOL tested.
 - Automated (`Tests/RESULTS.md`, 34 assertions green): clean defaults, serialization round trip,
@@ -98,7 +98,7 @@ parent checkout was wrong), `*.dds` and `Art/.render/` ignored, `Art/*-original`
   `DefInjected/MainButtonDef/MainButtons.xml`. Japanese (Ogliss') is not audited.
 - Checks: `Check-DefInjected.ps1` 8 keys, 0 errors; XML valid; no pawn text, so no gender
   agreement or plural keys apply.
-- Doubt for the review: "Objet parfaitement générique Patched" keeps `Patched` untranslated,
+- Doubt for the review: "Objet parfaitement générique Renew" keeps `Renew` untranslated,
   like the display name; tell me if the French name should differ.
 - `FRENCH_REVIEW.md` regenerated 2026-10-14 at `0fc5b77`; nothing reviewed by Virginie yet.
 

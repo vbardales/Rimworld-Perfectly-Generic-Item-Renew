@@ -31,7 +31,7 @@ game is **pending**: RimWorld is never launched by a session, the owner plays th
 ## S4. Automatic despawn setting
 
 - Preconditions: a save holding generic items.
-- Actions: Options > Mods > Perfectly Generic Item Patched, tick the checkbox, return to the game,
+- Actions: Options > Mods > Perfectly Generic Item Renew, tick the checkbox, return to the game,
   wait about 250 ticks; untick, reload a save with generic items.
 - Expected: ticked, spawned generic items vanish on the next rare tick; unticked, they stay.
   The setting survives a restart. Items already removed do not come back.
