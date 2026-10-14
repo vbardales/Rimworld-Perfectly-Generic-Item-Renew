@@ -10,9 +10,9 @@ licence:      silent
 licence_at:   "2026-09-12: no upstream LICENSE, a one-sentence Steam description; credit and removal-on-request stand in its place"
 upstream_mod_remotes: N/A
 settings_audit: partial
-localization: partial
-translation_en: partial
-translation_fr: partial
+localization: complete
+translation_en: complete
+translation_fr: complete
 dependencies: declared
 showcase:     partial
 tested_on:
@@ -22,7 +22,6 @@ remaining:
   - defect: no Tests/Pickle suite; S1 to S4 of TEST_SCENARIOS.md need a running game and a Pickle step for a save loaded with a mod removed
   - defect: Art/echo.png should be Art/echo-source.png (minimal set, PUBLISHING.md); owner-made source, not renamed by a session
   - defect: no PUBLICATION.md yet (writeDocs)
-  - unverified: translation_fr, the French review by Virginie (FRENCH_REVIEW.md generated 2026-10-14, nothing reviewed)
   - unverified: the missing-def replacement itself, which needs a save loaded with a mod taken out
   - unverified: the generic item standing in as the stuff of a wall or a garment whose material is gone
   - unverified: the three patches that keep it out of construction, generated bases and quest rewards, in game
@@ -34,7 +33,7 @@ remaining:
   - unverified: the shipped DLL was rebuilt on 2026-10-14 (SHA256 2141A0A7...CBE63); older hashes below describe past sources
 session:      local_e2e7811e-c9c1-4302-aa88-5765d6926970
 protocols_read_sha: 583ce1259235b54ebacca29e1116689d1d24e589
-updated:      2026-10-14, audit from setupRepo
+updated:      2026-10-14, French review recorded
 ---
 
 # Perfectly Generic Item Renew: status
@@ -53,7 +52,7 @@ predates every fix, nothing was ever released from it; reconcile before publicat
 | declareDependencies -> settings | Validated in sources: `brrainz.harmony` and Core in `modDependencies`, `loadAfter`, `incompatibleWith` the upstream; StuffedFloors optional and type/method guarded; no LoadFolders. |
 | settings -> localize | Validated: option, primary access, hidden MainButtons shortcut (`buttonVisible=false`, no forced visibility), 34 automated assertions green. `settings_audit` stays `partial`: in-game checks pending. |
 | localize -> writeTests | Validated offline: `PGIMod.SettingsCategory` now translates `PGI_SettingsCategory`; EN/FR keys and DefInjected resolve (8 keys, 0 errors); FRENCH_REVIEW.md generated. Japanese keys are Ogliss' and not audited. |
-| writeTests -> playTests | **Blocked.** Done: scenarios (`TEST_SCENARIOS.md`), unit tests rerun green, XML checks rerun green, results in `Tests/RESULTS.md`. Missing: Pickle suite (or a justification), Virginie's French review (7.g). |
+| writeTests -> playTests | **Blocked.** Done: scenarios, unit tests and XML checks rerun green, results in `Tests/RESULTS.md`, translations complete, Virginie's French review done (2026-10-14). Missing: the Pickle suite (or a written justification), and the local test project declared in `scripts/LOCAL_SCRIPTS.md`. |
 
 Closing-pass items done now: intermediates moved to `build/` (PUBLISHING.md; an earlier move to the
 parent checkout was wrong), `*.dds` and `Art/.render/` ignored, `Art/*-original` committed then removed, `About.xml` description no longer names a RimWorld version.
@@ -86,7 +85,7 @@ parent checkout was wrong), `*.dds` and `Art/.render/` ignored, `Art/*-original`
 
 ## Translation audit, 2026-10-14
 
-`localization`, `translation_en`, `translation_fr`: `partial` (TRANSLATIONS.md).
+`localization`, `translation_en`, `translation_fr`: `complete` (TRANSLATIONS.md), offline; in-game text checks (raw keys, clipping) stay `unverified` until `playTests`.
 
 - Inventory, traced to source: `PGI_SettingsCategory`, `PGI_RemoveOption`,
   `PGI_RemoveOptionToolTip` (Keyed, all three used through `.Translate()` in `PGIMod.cs`);
@@ -100,7 +99,8 @@ parent checkout was wrong), `*.dds` and `Art/.render/` ignored, `Art/*-original`
   agreement or plural keys apply.
 - Doubt for the review: "Objet parfaitement générique Renew" keeps `Renew` untranslated,
   like the display name; tell me if the French name should differ.
-- `FRENCH_REVIEW.md` regenerated 2026-10-14 at `0fc5b77`; nothing reviewed by Virginie yet.
+- `FRENCH_REVIEW.md` regenerated 2026-10-14 from the clean tree at `0040531`.
+- French review: Virginie, 2026-10-14, revision `0040531` (`FRENCH_REVIEW.md` at `cc571e0`), "Validé", no correction. "Objet parfaitement générique Renew" kept. English unchanged.
 
 ## Pending observations (not blockers)
 
