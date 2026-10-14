@@ -1,7 +1,7 @@
 # Build intermediates.
 # Directory.Build.props sends them outside the mod folder: they must never end up back inside,
 # since the whole folder is uploaded to the Workshop as-is.
-.build/
+build/
 Source/obj/
 Source/bin/
 Source/**/obj/
@@ -19,6 +19,10 @@ Source/**/bin/
 *.user
 *.suo
 *.csproj.user
+
+# Game-generated texture caches and local render scratch.
+*.dds
+Art/.render/
 
 # System
 Thumbs.db

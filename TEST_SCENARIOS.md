@@ -67,3 +67,7 @@ declares `brrainz.harmony` in `modDependencies`, which the sources and About.xml
 No `Tests/Pickle/` exists yet. S1 to S4 are exactly what only a running game can show and
 belong in a Pickle suite (a save loaded with a mod removed needs a map step that does not
 exist yet). Recorded as a defect in `STATUS.md`, not as non-applicable.
+
+`@requires` (when the suite is written): `Ludeon.RimWorld`, `brrainz.harmony` (hard dependencies,
+in the minimal set) and `StuffedFloors` (S7, optional; its package id and the map that mounts it
+are still to be chosen). One pass without the optional mod, one with it.

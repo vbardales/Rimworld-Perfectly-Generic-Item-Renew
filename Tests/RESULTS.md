@@ -6,7 +6,7 @@ Revision: `f67dd17` plus the local changes committed with this file. Date: 2026-
 
 ```powershell
 dotnet build Tests/PerfectlyGenericItem.Tests.csproj -c Release
-..\.build\tests\PerfectlyGenericItem.Tests.exe "<RimWorld>\RimWorldWin64_Data\Managed" "$env:TEMP\pgi-tests"
+build\tests\PerfectlyGenericItem.Tests.exe "<RimWorld>\RimWorldWin64_Data\Managed" "$env:TEMP\pgi-tests"
 ```
 
 Run from the repository root (one check reads `Mod/Defs/MainButtons.xml`).

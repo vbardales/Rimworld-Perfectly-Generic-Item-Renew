@@ -8,8 +8,8 @@
       the game's own code. This has to stay in a Directory.Build.props: NuGet restore reads the
       property before the csproj is evaluated.
     -->
-    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\..\.build\obj\PerfectlyGenericItemPatched\</BaseIntermediateOutputPath>
-    <BaseOutputPath>$(MSBuildThisFileDirectory)..\..\.build\bin\PerfectlyGenericItemPatched\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\build\obj\PerfectlyGenericItemPatched\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)..\build\bin\PerfectlyGenericItemPatched\</BaseOutputPath>
   </PropertyGroup>
 
 </Project>
