@@ -10,9 +10,9 @@
   <description>UNOFFICIAL. This mod is published without the original author's explicit consent.
 If the original author contacts me to request its removal, I undertake to take it down promptly.
 
-Update of Ogliss' Perfectly Generic Item to RimWorld 1.6.
+Update of Ogliss' Perfectly Generic Item to the latest RimWorld version.
 
-I am not the author of this mod. The idea, the design and the original code are entirely Ogliss', made for MercuryDoll - all I did was the work needed to make it run on 1.6. Credit goes to them; mistakes in the update are mine. If the original author comes back to it, or asks me to take this down, I will.
+I am not the author of this mod. The idea, the design and the original code are entirely Ogliss', made for MercuryDoll - all I did was the work needed to make it run on the latest version. Credit goes to them; mistakes in the update are mine. If the original author comes back to it, or asks me to take this down, I will.
 
 Original mod: https://steamcommunity.com/sharedfiles/filedetails/?id=2169353373
 
@@ -22,13 +22,13 @@ When you remove a mod from an ongoing save, every item it added is lost, and the
 
 The generic item is also a stuff, so it can stand in for a wall or a garment whose material is gone. It is excluded from every material picker, so it is never offered for construction, never used by generated bases, and never handed out as a quest reward.
 
-What changed for 1.6
+What changed in the update
 
-The mod was dead on 1.6, not merely flagged red. Its Harmony setup patches all its hooks in one call, one of those hooks was gone, and the exception took the whole class down with it - including the missing-def replacement that is the entire point of the mod.
+The mod was dead on the latest version, not merely flagged red. Its Harmony setup patches all its hooks in one call, one of those hooks was gone, and the exception took the whole class down with it - including the missing-def replacement that is the entire point of the mod.
 
-- BaseGenUtility.IsCheapWallStuff no longer exists in 1.6. The patch that used it kept the generic item out of generated settlement walls; that job is now done by allowedInStuffGeneration on the def itself, which is what 1.6 checks in its place. The patch is gone.
+- BaseGenUtility.IsCheapWallStuff no longer exists in the latest version. The patch that used it kept the generic item out of generated settlement walls; that job is now done by allowedInStuffGeneration on the def itself, which is what the game checks in its place. The patch is gone.
 - StuffProperties.soundImpactStuff was renamed soundImpactBullet, which was throwing an XML error on every load.
-- The three remaining hooks - StuffProperties.CanMake, SketchGenUtility.IsStuffAllowed, ThingSetMakerUtility.IsDerpAndDisallowed - and BackCompatibility.BackCompatibleDefName still exist in 1.6 with the same signatures, and were recompiled unchanged against the 1.6 reference assemblies.
+- The three remaining hooks - StuffProperties.CanMake, SketchGenUtility.IsStuffAllowed, ThingSetMakerUtility.IsDerpAndDisallowed - and BackCompatibility.BackCompatibleDefName still exist with the same signatures, and were recompiled unchanged against the current reference assemblies.
 
 Three defects were fixed along the way, which is why this is "Patched" rather than a plain update.
 
@@ -42,7 +42,7 @@ Safe to add to an ongoing save - that is what it is for. Removing it mid-save tu
 
 AI-GENERATED
 
-The 1.6 update work and this description were written with Claude Code (Anthropic), and the mod icon generated with an image model, under human direction and review. Stated openly: designing with these tools is my job. The mod's own design and code remain Ogliss'.
+The update work and this description were written with Claude Code (Anthropic), and the mod icon generated with an image model, under human direction and review. Stated openly: designing with these tools is my job. The mod's own design and code remain Ogliss'.
 
 LICENCE
 

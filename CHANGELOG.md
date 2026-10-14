@@ -4,6 +4,22 @@ Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display
 it in game.
 
+## [Unreleased]
+
+### Added
+
+- A hidden MainButtons shortcut to the settings window. It stays invisible until a customization
+  mod (RIMMSQOL and similar) reveals it; Options -> Mods -> Perfectly Generic Item Patched stays
+  the primary access. French label and description included.
+- A translated settings category name (`PGI_SettingsCategory`) in place of hardcoded English.
+- The "(unofficial)" suffix and notice in the title, About description and README.
+- Console unit tests under `Tests/` (34 assertions against the compiled mod and the real game
+  assemblies, no game process).
+
+### Changed
+
+- The About description no longer names a RimWorld version.
+
 ## [1.0.0] — 2026-09-04
 
 First release of the 1.6 update. The mod's own design is unchanged from Ogliss' 1.4 version, apart

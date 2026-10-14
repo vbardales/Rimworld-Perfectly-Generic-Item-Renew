@@ -76,8 +76,10 @@ internal static class Program
         comp.CompTickRare(); Check(thing.Despawns == 1, "Unspawned item is preserved");
         Current.Game = null;
 
-        var generic = new ThingDef { defName = "PerfectlyGenericItem" };
-        var ordinary = new ThingDef { defName = "PGITest_Ordinary" };
+        // DefOf static constructors warn through Unity unless the helper is mid-binding.
+        typeof(DefOfHelper).GetField("bindingNow", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public).SetValue(null, true);
+        var generic = Factory.NewDef<ThingDef>("PerfectlyGenericItem");
+        var ordinary = Factory.NewDef<ThingDef>("PGITest_Ordinary");
         DefDatabase<ThingDef>.Add(generic); DefDatabase<ThingDef>.Add(ordinary);
         PGIThingDefOf.PerfectlyGenericItem = generic;
         foreach (bool initial in new[] { true, false })
@@ -103,11 +105,9 @@ internal static class Program
         CheckReplacement(typeof(ThingDef), "PGITest_Ordinary", false, "PGITest_Ordinary", "PGITest_Ordinary", "Existing ThingDef preserved");
         CheckReplacement(typeof(ThingDef), "PGITest_Old", false, "PGITest_Ordinary", "PGITest_Ordinary", "Successful vanilla rename preserved");
         CheckReplacement(typeof(ThingDef), "PGITest_Missing", false, "PGITest_AlsoMissing", "PerfectlyGenericItem", "Unresolved rename replaced");
-        // Native visibility is deliberately not overridden by the mod.
-        var worker = new MainButtonWorker_PGISettings { def = new MainButtonDef { buttonVisible = false } };
-        Check(!worker.Visible, "MainButton is hidden by its definition");
-        worker.def.buttonVisible = true;
-        Check(worker.Visible, "Changing native visibility reveals shortcut");
+        // Native visibility is deliberately not overridden by the mod; the getter itself needs a live game
+        // (ModsConfig), so the hidden-by-default decision is read from the def XML, run from the repository root.
+        Check(File.ReadAllText(Path.Combine("Mod", "Defs", "MainButtons.xml")).Contains("<buttonVisible>false</buttonVisible>"), "MainButton is hidden by its definition");
         Check(typeof(MainButtonWorker_PGISettings).GetProperty("Visible").DeclaringType == typeof(MainButtonWorker), "No forced visibility override defeats customization");
     }
 
@@ -124,6 +124,19 @@ internal static class Program
         Scribe.loader.InitLoading(path); settings.ExposeData();
         Scribe.mode = LoadSaveMode.PostLoadInit; settings.ExposeData(); Scribe.ForceStop();
         return settings;
+    }
+
+    // Def constructors reach Unity resources (shaders) that a console process lacks: skip them.
+    // Nested so its Assembly-CSharp constraint loads only after the resolver is registered.
+    private static class Factory
+    {
+        public static T NewDef<T>(string name, bool? visible = null) where T : Def
+        {
+            var def = (T)FormatterServices.GetUninitializedObject(typeof(T));
+            def.defName = name;
+            if (visible.HasValue) ((MainButtonDef)(object)def).buttonVisible = visible.Value;
+            return def;
+        }
     }
 
     // Observe the engine-boundary call without running map removal or Unity.
