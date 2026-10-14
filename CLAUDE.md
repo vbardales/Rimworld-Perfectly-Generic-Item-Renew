@@ -30,7 +30,7 @@ The Workshop uploader sends that whole directory, without exclusions.
 
 - `Mod/`: About, Assemblies, Defs, Languages, Textures and distributed attribution.
 - `Source/`: C# source, never distributed. The project outputs to `Mod/Assemblies/`.
-- `.build/`: ignored build intermediates, inside this standalone repository and outside Mod.
+- `../.build/`: ignored build intermediates, in the parent checkout, outside this repository and outside Mod.
 - `Art/`: image sources and generation records, never distributed.
 - `Tests/` and `TEST_SCENARIOS.md`: technical tests, results and in-game validation plan.
 - Root documentation, including this file and STATUS.md, stays outside Mod.
@@ -80,9 +80,8 @@ The initial 2026-09-13 audit also reproduced the shipped DLL byte for byte; its 
 command remain in STATUS.md. Those hashes describe the historical source, not later fixes.
 A changed DLL from unchanged sources warrants investigation.
 
-Directory.Build.props now sends intermediates to this repository's ignored `.build/`.
-The older configuration sent them to the parent's `.build/`; that historical location
-was used for the initial audit's cached restore. Neither location belongs in Mod.
+Directory.Build.props sends intermediates to the parent checkout's ignored `.build/`
+(closing pass: no dot entry at this repository root).
 
 ## Testing
 
