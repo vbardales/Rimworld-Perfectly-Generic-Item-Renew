@@ -19,7 +19,7 @@ tested_on:
 workshop:     3806765659 (PublishedFileId.txt present, nothing uploaded by this audit)
 published:    no
 remaining:
-  - defect: no Tests/Pickle suite; S1 to S4 of TEST_SCENARIOS.md need a running game and a Pickle step for a save loaded with a mod removed
+  - defect: no Tests/Pickle suite yet; plan answered by NPT 2026-10-14 (see Pickle plan): fixture mod, fixture save, three local steps, then the suite for S1 to S4
   - defect: Art/echo.png should be Art/echo-source.png (minimal set, PUBLISHING.md); owner-made source, not renamed by a session
   - defect: no PUBLICATION.md yet (writeDocs)
   - unverified: the missing-def replacement itself, which needs a save loaded with a mod taken out
@@ -110,3 +110,19 @@ parent checkout was wrong), `*.dds` and `Art/.render/` ignored, `Art/*-original`
 ## History
 
 Older audits (2026-09-12, 2026-09-13, 2026-09-27) moved to `docs/runs/history.md`.
+
+## Pickle plan (NPT answer, 2026-10-14)
+
+- No step is needed to stage a save with a mod removed: one pass map stages the fixture mod M and
+  saves ("the game is saved as {string}", then "the saved game {string} is handed to the mod
+  {string}", SaveSteps `nelim.pickletools.savesteps`, not played yet); a second pass map without M
+  loads it as `Pickle/Fixtures/<name>.rws` in this repository.
+- Fixture mod M: ours to write and keep under `Tests/Pickle`, a tiny local mod with 2 or 3
+  ThingDefs and a stuff, staged only in the making pass.
+- Local steps to write here first (promoted by NPT only when a second mod needs them, on a request
+  from the Ticket Manager): count the things of a defName on the map
+  (`Find.CurrentMap.listerThings.ThingsOfDef`); assert the log holds no "could not load reference
+  to ThingDef" (read through Pickle's own facility; "no errors were logged" exists upstream, to
+  check in Rimworld-Pickle `Docs/steps.md`); wait one rare tick (S4).
+- Nothing written yet. NPT owes no ticket or commit; tell NPT when a step is played and shared by
+  two mods.
