@@ -19,7 +19,7 @@ tested_on:
 workshop:     3806765659 (PublishedFileId.txt present, nothing uploaded by this audit)
 published:    no
 remaining:
-  - defect: no Tests/Pickle suite yet; plan answered by NPT 2026-10-14 (see Pickle plan): fixture mod, fixture save, three local steps, then the suite for S1 to S4
+  - defect: no Tests/Pickle suite yet; Pickle already has every step needed (see Pickle plan): fixture mod and save to make, then features S1 to S4 in plain Gherkin
   - defect: Art/echo.png should be Art/echo-source.png (minimal set, PUBLISHING.md); owner-made source, not renamed by a session
   - defect: no PUBLICATION.md yet (writeDocs)
   - unverified: the missing-def replacement itself, which needs a save loaded with a mod taken out
