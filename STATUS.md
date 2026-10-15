@@ -124,5 +124,11 @@ Older audits (2026-09-12, 2026-09-13, 2026-09-27) moved to `docs/runs/history.md
   (`Find.CurrentMap.listerThings.ThingsOfDef`); assert the log holds no "could not load reference
   to ThingDef" (read through Pickle's own facility; "no errors were logged" exists upstream, to
   check in Rimworld-Pickle `Docs/steps.md`); wait one rare tick (S4).
+- Correction 2026-10-15: Pickle's own catalogue (`Rimworld-Pickle` `Docs/steps.md`, WSL checkout
+  `1af08c0`) already has the count, wait and log steps, so **no local C# step is needed**:
+  `{int} {string} exist`, `a {string} exists`, `no {string} exists`, `I spawn a {string} at
+  ({int}, {int})`, `a {string} is built at ({int}, {int})`, `I wait {int} ticks` (S4), `no errors
+  were logged` (the missing-reference message is a Log.Error), `the save {string} is loaded`,
+  `mod {string} is not loaded`. Only the fixture mod M and the fixture save remain to make.
 - Nothing written yet. NPT owes no ticket or commit; tell NPT when a step is played and shared by
   two mods.
