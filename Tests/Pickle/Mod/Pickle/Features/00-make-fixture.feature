@@ -1,3 +1,4 @@
+@requires:nelim.pickletools.savesteps
 # Run once, in the make-fixture pass (the item mod is staged), never in the pass that loads the save.
 # Builds the save the other features load: items of a mod, and a garment made of that mod's cloth.
 Feature: make the save that holds items of a mod that is later removed
