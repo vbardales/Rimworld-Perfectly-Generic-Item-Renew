@@ -1,0 +1,5 @@
+# Making pass, run once: stages the throwaway item mod and the SaveSteps companion beside the mod, so a
+# save holding PGIFix_* items can be made and handed to the test companion as Pickle/Fixtures/pgi-missing-mod.rws.
+# Select with -DepMap wsl-deps.make-fixture.map and the filter 00-make-fixture (pass name: make-fixture).
+nelim.pgifixture.items          path:PerfectlyGenericItemPatched/Tests/Pickle/FixtureMod
+nelim.pickletools.savesteps     path:PickleTools/SaveSteps/Mod

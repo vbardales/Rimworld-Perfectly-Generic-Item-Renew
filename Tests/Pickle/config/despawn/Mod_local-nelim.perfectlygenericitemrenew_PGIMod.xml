@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Seed of the despawn pass: removePGI on. The file name assumes the staged folder is
+     local-nelim.perfectlygenericitemrenew (the pattern of the other suites); unverified until played. -->
+<SettingsBlock>
+	<ModSettings Class="PerfectlyGenericItem.PGISettings">
+		<PGI_remove>true</PGI_remove>
+	</ModSettings>
+</SettingsBlock>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="ResourceBase">
+    <defName>PGIFix_Widget</defName>
+    <label>fixture widget</label>
+    <description>Test item that the save holds and the loading pass no longer defines.</description>
+    <stackLimit>75</stackLimit>
+    <statBases><MarketValue>1</MarketValue><Mass>0.1</Mass></statBases>
+    <thingCategories><li>Items</li></thingCategories>
+  </ThingDef>
+  <ThingDef ParentName="ResourceBase">
+    <defName>PGIFix_Gadget</defName>
+    <label>fixture gadget</label>
+    <description>Second test item, so more than one missing def is replaced.</description>
+    <stackLimit>75</stackLimit>
+    <statBases><MarketValue>1</MarketValue><Mass>0.1</Mass></statBases>
+    <thingCategories><li>Items</li></thingCategories>
+  </ThingDef>
+  <ThingDef ParentName="ResourceBase">
+    <defName>PGIFix_Cloth</defName>
+    <label>fixture cloth</label>
+    <description>Test material: a garment made of it loses its stuff when this mod is removed.</description>
+    <stackLimit>75</stackLimit>
+    <statBases><MarketValue>1</MarketValue><Mass>0.05</Mass><StuffPower_Insulation_Cold>10</StuffPower_Insulation_Cold></statBases>
+    <thingCategories><li>Textiles</li></thingCategories>
+    <stuffProps>
+      <categories><li>Fabric</li></categories>
+      <commonality>0</commonality>
+      <color>(0.6,0.3,0.7)</color>
+    </stuffProps>
+  </ThingDef>
+</Defs>

@@ -19,7 +19,7 @@ tested_on:
 workshop:     3806765659 (PublishedFileId.txt present, nothing uploaded by this audit)
 published:    no
 remaining:
-  - defect: no Tests/Pickle suite yet; Pickle already has every step needed (see Pickle plan): fixture mod and save to make, then features S1 to S4 in plain Gherkin
+  - unverified: Pickle suite written 2026-10-16 (Tests/Pickle: S1, S2, S4), never played; the fixture save is not made yet (make-fixture pass), S3 and S5 to S7 stay offline or manual with reasons in Tests/Pickle/README.md
   - defect: Art/echo.png should be Art/echo-source.png (minimal set, PUBLISHING.md); owner-made source, not renamed by a session
   - defect: no PUBLICATION.md yet (writeDocs)
   - unverified: the missing-def replacement itself, which needs a save loaded with a mod taken out
@@ -52,7 +52,7 @@ predates every fix, nothing was ever released from it; reconcile before publicat
 | declareDependencies -> settings | Validated in sources: `brrainz.harmony` and Core in `modDependencies`, `loadAfter`, `incompatibleWith` the upstream; StuffedFloors optional and type/method guarded; no LoadFolders. |
 | settings -> localize | Validated: option, primary access, hidden MainButtons shortcut (`buttonVisible=false`, no forced visibility), 34 automated assertions green. `settings_audit` stays `partial`: in-game checks pending. |
 | localize -> writeTests | Validated offline: `PGIMod.SettingsCategory` now translates `PGI_SettingsCategory`; EN/FR keys and DefInjected resolve (8 keys, 0 errors); FRENCH_REVIEW.md generated. Japanese keys are Ogliss' and not audited. |
-| writeTests -> playTests | **Blocked.** Done: scenarios, unit tests and XML checks rerun green, results in `Tests/RESULTS.md`, translations complete, Virginie's French review done (2026-10-14). Missing: the Pickle suite (or a written justification), and the local test project declared in `scripts/LOCAL_SCRIPTS.md`. |
+| writeTests -> playTests | Done: scenarios, unit tests, XML checks, results, translations and French review, Pickle suite written (not played, justified per scenario in `Tests/Pickle/README.md`). Left: declare `Tests/Program.cs` in `scripts/LOCAL_SCRIPTS.md` (Audit workflow session). |
 
 Closing-pass items done now: intermediates moved to `build/` (PUBLISHING.md; an earlier move to the
 parent checkout was wrong), `*.dds` and `Art/.render/` ignored, `Art/*-original` committed then removed, `About.xml` description no longer names a RimWorld version.
@@ -130,5 +130,5 @@ Older audits (2026-09-12, 2026-09-13, 2026-09-27) moved to `docs/runs/history.md
   ({int}, {int})`, `a {string} is built at ({int}, {int})`, `I wait {int} ticks` (S4), `no errors
   were logged` (the missing-reference message is a Log.Error), `the save {string} is loaded`,
   `mod {string} is not loaded`. Only the fixture mod M and the fixture save remain to make.
-- Nothing written yet. NPT owes no ticket or commit; tell NPT when a step is played and shared by
+- Written 2026-10-16: `Tests/Pickle/` (README, fixture item mod, companion, 3 features, 2 pass maps, despawn seed). Not played. NPT owes no ticket or commit; tell NPT when a step is played and shared by
   two mods.

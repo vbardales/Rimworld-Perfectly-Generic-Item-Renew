@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>PGI fixture items (Pickle tests)</name>
+  <author>Nelim</author>
+  <packageId>nelim.pgifixture.items</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Throwaway item mod used to make a save that Perfectly Generic Item Renew then loads without it. Development only: never published, staged only in the making pass.</description>
+  <modDependencies>
+    <li>
+      <packageId>Ludeon.RimWorld</packageId>
+      <displayName>Core</displayName>
+    </li>
+  </modDependencies>
+</ModMetaData>

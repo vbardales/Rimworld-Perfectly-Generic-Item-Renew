@@ -1,0 +1,2 @@
+# Despawn pass: no extra mod. The point of this file is its name; config/despawn/ carries the seed.
+# Select with -DepMap wsl-deps.despawn.map and the filter 02-despawn (pass name: despawn).
