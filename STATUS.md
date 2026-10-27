@@ -5,7 +5,7 @@ repo:         Rimworld-Perfectly-Generic-Item-Renew
 remote:       https://github.com/vbardales/Rimworld-Perfectly-Generic-Item-Renew.git
 visibility:   public
 detached:     yes
-workflow_stage: writeTests[1.0.1]
+workflow_stage: makeSources
 licence:      silent
 licence_at:   "2026-09-12: no upstream LICENSE, a one-sentence Steam description; credit and removal-on-request stand in its place"
 upstream_mod_remotes: N/A
@@ -20,7 +20,9 @@ workshop:     3806765659 (PublishedFileId.txt present, nothing uploaded by this 
 published:    no
 remaining:
   - unverified: Pickle suite written 2026-10-16 (Tests/Pickle: S1, S2, S4), never played; the fixture save is not made yet (make-fixture pass), S3 and S5 to S7 stay offline or manual with reasons in Tests/Pickle/README.md
-  - defect: Art/echo.png should be Art/echo-source.png (minimal set, PUBLISHING.md); owner-made source, not renamed by a session
+  - defect: Art/echo-preview.png should be Art/echo-source.png (minimal set, PUBLISHING.md 2.f); owner-made source, renamed echo.png to echo-preview.png on 2026-10-27, not yet named echo-source.png. First unmet step of the 2026-10-27 re-audit, blocks makeSources to code
+  - unverified: 1.a duplicate search not rerun at the 2026-10-14 audit (original known and credited)
+  - defect: 7.b Tests/Program.cs not declared in scripts/LOCAL_SCRIPTS.md (Audit workflow session); Run-UnitTests.ps1 refuses the local test project (no RimWorldManaged/GameManaged), console tests replayed by hand 2026-10-27, 34 assertions green
   - defect: no PUBLICATION.md yet (writeDocs)
   - unverified: the missing-def replacement itself, which needs a save loaded with a mod taken out
   - unverified: the generic item standing in as the stuff of a wall or a garment whose material is gone
@@ -34,7 +36,7 @@ remaining:
 session:      local_bbe6a63f-09d8-4a3c-9070-b9fafe66f132
 social_preview_sha256: 17b5a4dba07b598a201465f7f376bd5d57d2151506517d28d3bc0c1def844714
 protocols_read_sha: 43dd90d4b7873c500347fba1be01275a48d5795b
-updated:      2026-10-15, protocols re-read
+updated:      2026-10-27, re-audit from makeSources: palette measured (3 families, V 0.326), echo name defect open
 ---
 
 # Perfectly Generic Item Renew: status
