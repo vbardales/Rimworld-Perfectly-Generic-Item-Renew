@@ -19,6 +19,7 @@ tested_on:
 workshop:     3806765659 (PublishedFileId.txt present, nothing uploaded by this audit)
 published:    no
 remaining:
+  - ticket 20261027-231425-803-e71f (make-fixture, filter 00-make-fixture, map wsl-deps.make-fixture.map, tree 77768ff, evidence Tests/Pickle/Inbox/make-fixture) filed 2026-10-27, waiting. On RUN_DONE: copy pgi-missing-mod.rws into Mod/Pickle/Fixtures/ and commit; then file 01-missing-things-replaced, then 02-despawn (map wsl-deps.despawn.map). Check the README assumptions: cells (130,150) and (131,150) free, Apparel_Parka accepts Fabric cloth
   - unverified: Pickle suite written 2026-10-16 (Tests/Pickle: S1, S2, S4), never played; the fixture save is not made yet (make-fixture pass), S3 and S5 to S7 stay offline or manual with reasons in Tests/Pickle/README.md
   - note (2026-10-27, Virginie): Art/echo-preview.png stays the working name, it is only the preview of the echo for now; echo-source.png comes when the echo is final. Not a defect
   - done 2026-10-27: duplicate search (1.a), 9546 folders, pattern PerfectlyGenericItem and the description; no equivalent mod, only upstream Ogliss 2169353373 (replaced), our own 3806765659 and two consumers (PWG Perfectly Generic Weapons 2178203481, PGI Overpower 3720439672)
