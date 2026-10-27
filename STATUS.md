@@ -5,7 +5,7 @@ repo:         Rimworld-Perfectly-Generic-Item-Renew
 remote:       https://github.com/vbardales/Rimworld-Perfectly-Generic-Item-Renew.git
 visibility:   public
 detached:     yes
-workflow_stage: writeTests[1.0.1]
+workflow_stage: playTests[1.0.1]
 licence:      silent
 licence_at:   "2026-09-12: no upstream LICENSE, a one-sentence Steam description; credit and removal-on-request stand in its place"
 upstream_mod_remotes: N/A
@@ -36,7 +36,7 @@ remaining:
 session:      local_bbe6a63f-09d8-4a3c-9070-b9fafe66f132
 social_preview_sha256: 17b5a4dba07b598a201465f7f376bd5d57d2151506517d28d3bc0c1def844714
 protocols_read_sha: 43dd90d4b7873c500347fba1be01275a48d5795b
-updated:      2026-10-27, re-audit: palette measured (3 families, V 0.326), duplicate search done, Program.cs question sent to Audit
+updated:      2026-10-27, writeTests exit: tests replayed green through Run-UnitTests.ps1, duplicate search done; scenarios still reference PUBLICATION.md (writeDocs)
 ---
 
 # Perfectly Generic Item Renew: status

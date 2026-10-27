@@ -1,6 +1,6 @@
 # Test results
 
-Revision: `f67dd17` plus the local changes committed with this file. Date: 2026-10-14.
+Revision: `cddacbb` (main). Shipped code last changed in `c2739e2` (Mod/Assemblies and Source untouched since). Console tests replayed 2026-10-27 through the shared runner, 34 assertions green.
 
 ## Console unit tests
 
