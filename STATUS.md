@@ -32,6 +32,7 @@ remaining:
   - unverified: Tests/Program.cs (local test project) is not declared in scripts/LOCAL_SCRIPTS.md (AUDIT.md 7.b: contact the Audit workflow session)
   - unverified: the shipped DLL was rebuilt on 2026-10-14 (SHA256 2141A0A7...CBE63); older hashes below describe past sources
 session:      local_bbe6a63f-09d8-4a3c-9070-b9fafe66f132
+social_preview_sha256: 17b5a4dba07b598a201465f7f376bd5d57d2151506517d28d3bc0c1def844714
 protocols_read_sha: 43dd90d4b7873c500347fba1be01275a48d5795b
 updated:      2026-10-15, protocols re-read
 ---
