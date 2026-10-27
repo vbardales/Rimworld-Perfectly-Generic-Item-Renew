@@ -5,8 +5,7 @@ Revision: `f67dd17` plus the local changes committed with this file. Date: 2026-
 ## Console unit tests
 
 ```powershell
-dotnet build Tests/PerfectlyGenericItem.Tests.csproj -c Release
-build\tests\PerfectlyGenericItem.Tests.exe "<RimWorld>\RimWorldWin64_Data\Managed" "$env:TEMP\pgi-tests"
+powershell -NoProfile -ExecutionPolicy Bypass -File ..\scripts\Run-UnitTests.ps1 -ModRoot . -PassManagedToExe
 ```
 
 Run from the repository root (one check reads `Mod/Defs/MainButtons.xml`).
