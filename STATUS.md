@@ -22,7 +22,7 @@ remaining:
   - unverified: Pickle suite written 2026-10-16 (Tests/Pickle: S1, S2, S4), never played; the fixture save is not made yet (make-fixture pass), S3 and S5 to S7 stay offline or manual with reasons in Tests/Pickle/README.md
   - note (2026-10-27, Virginie): Art/echo-preview.png stays the working name, it is only the preview of the echo for now; echo-source.png comes when the echo is final. Not a defect
   - done 2026-10-27: duplicate search (1.a), 9546 folders, pattern PerfectlyGenericItem and the description; no equivalent mod, only upstream Ogliss 2169353373 (replaced), our own 3806765659 and two consumers (PWG Perfectly Generic Weapons 2178203481, PGI Overpower 3720439672)
-  - unverified: 7.b Tests/Program.cs not declared in scripts/LOCAL_SCRIPTS.md; Audit asked 2026-10-27 whether to declare it alone or group it into Run-UnitTests.ps1 (which refuses the csproj: no RimWorldManaged/GameManaged); console tests replayed by hand 2026-10-27, 34 assertions green
+  - done 2026-10-27 (Audit answer): the console tests run through the shared scripts/Run-UnitTests.ps1 -ModRoot . -PassManagedToExe (csproj declares RimWorldManaged, Program.cs defaults its output folder); no LOCAL_SCRIPTS line, 34 assertions green
   - defect: no PUBLICATION.md yet (writeDocs)
   - unverified: the missing-def replacement itself, which needs a save loaded with a mod taken out
   - unverified: the generic item standing in as the stuff of a wall or a garment whose material is gone

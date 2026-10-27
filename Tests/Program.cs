@@ -13,13 +13,14 @@ internal static class Program
     private static int checks;
     private static int Main(string[] args)
     {
-        if (args.Length != 2) { Console.Error.WriteLine("Usage: PerfectlyGenericItem.Tests.exe <game Managed folder> <test output folder>"); return 2; }
+        if (args.Length < 1 || args.Length > 2) { Console.Error.WriteLine("Usage: PerfectlyGenericItem.Tests.exe <game Managed folder> [test output folder]"); return 2; }
+        string outputFolder = args.Length == 2 ? args[1] : Path.Combine(Path.GetTempPath(), "pgi-tests");
         AppDomain.CurrentDomain.AssemblyResolve += (sender, request) =>
         {
             string path = Path.Combine(args[0], new AssemblyName(request.Name).Name + ".dll");
             return File.Exists(path) ? Assembly.LoadFrom(path) : null;
         };
-        try { Run(args[1]); Console.WriteLine($"PASS: {checks} assertions against the compiled mod and real game assemblies; no game process."); return 0; }
+        try { Run(outputFolder); Console.WriteLine($"PASS: {checks} assertions against the compiled mod and real game assemblies; no game process."); return 0; }
         catch (Exception ex) { Console.Error.WriteLine(ex); return 1; }
     }
 
