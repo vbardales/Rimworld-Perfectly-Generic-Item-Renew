@@ -31,8 +31,8 @@ remaining:
   - decision (2026-10-14, Virginie): renamed Patched to Renew, as PUBLISHING.md "Nommage" asks for a port of a dead mod; packageId, repository, name, README title and STATUS `mod` follow. Repository folder still named PerfectlyGenericItemPatched, to rename outside a session
   - unverified: Tests/Program.cs (local test project) is not declared in scripts/LOCAL_SCRIPTS.md (AUDIT.md 7.b: contact the Audit workflow session)
   - unverified: the shipped DLL was rebuilt on 2026-10-14 (SHA256 2141A0A7...CBE63); older hashes below describe past sources
-session:      local_e2e7811e-c9c1-4302-aa88-5765d6926970
-protocols_read_sha: 7bafac79376f69b0ecc5d31de811aef4f53a9987
+session:      local_bbe6a63f-09d8-4a3c-9070-b9fafe66f132
+protocols_read_sha: 43dd90d4b7873c500347fba1be01275a48d5795b
 updated:      2026-10-15, protocols re-read
 ---
 
