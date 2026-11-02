@@ -13,4 +13,4 @@ Feature: make the save that holds items of a mod that is later removed
     And a "PGIFix_Gadget" exists
     And no errors were logged
     When Nelim's Pickle Tools: the game is saved as "pgi-missing-mod"
-    And Nelim's Pickle Tools: the saved game "pgi-missing-mod" is handed to the mod "nelim.perfectlygenericitemrenew.pickletests"
+    And Nelim's Pickle Tools: the saved game "pgi-missing-mod" is copied to the run folder

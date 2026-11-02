@@ -10,7 +10,7 @@ staged only in the making pass.
 
 | Pass | Map | Filter | What it establishes |
 | --- | --- | --- | --- |
-| make-fixture (once) | `wsl-deps.make-fixture.map` | `00-make-fixture` | makes `pgi-missing-mod.rws` with the item mod active and hands it to the companion. The file must then be copied into `Mod/Pickle/Fixtures/` and committed (whether the hand-over reaches the repository or only the staged copy is unknown) |
+| make-fixture (once) | `wsl-deps.make-fixture.map` | `00-make-fixture` | makes `pgi-missing-mod.rws` with the item mod active and copies it to the run folder (`the saved game {string} is copied to the run folder`; the hand-over step only writes into the staged copy, which dies with the run). The file comes out as `Tests/Pickle/Inbox/<run>/pgi-missing-mod.rws`: copy it by hand into `Mod/Pickle/Fixtures/` and commit |
 | minimal | none | `01-missing-things-replaced` | S1 (missing items become PerfectlyGenericItem, no error), S2 (a garment whose cloth is gone loads), item mod absent |
 | despawn | `wsl-deps.despawn.map` + `config/despawn/` seed | `02-despawn` | S4 (setting on: generic items vanish within 600 ticks) |
 | English and French | `-Language English` / `-Language French` | as above | the mod adds no scenario text; one run per language is only worth it if the settings page is exercised, which no scenario does yet |
