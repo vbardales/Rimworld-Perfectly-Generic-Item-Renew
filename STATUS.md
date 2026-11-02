@@ -37,7 +37,7 @@ remaining:
 session:      local_bbe6a63f-09d8-4a3c-9070-b9fafe66f132
 social_preview_sha256: 17b5a4dba07b598a201465f7f376bd5d57d2151506517d28d3bc0c1def844714
 protocols_read_sha: a6a234e83b81671d5f12b113e505fb1b7cd839b2
-updated:      2026-10-27, writeTests exit: tests replayed green through Run-UnitTests.ps1, duplicate search done; scenarios still reference PUBLICATION.md (writeDocs)
+updated:      2026-11-02, replay-audit: sections 1 to 7 hold, stage stays playTests[1.0.1]; first open 8.c (Pickle suites 01 and 02 not played, fixture save location asked to NPT); also open 8.f to 8.m (code_review_sha absent, tested_on empty)
 ---
 
 # Perfectly Generic Item Renew: status
