@@ -36,7 +36,7 @@ remaining:
   - unverified: the shipped DLL was rebuilt on 2026-10-14 (SHA256 2141A0A7...CBE63); older hashes below describe past sources
 session:      local_bbe6a63f-09d8-4a3c-9070-b9fafe66f132
 social_preview_sha256: 17b5a4dba07b598a201465f7f376bd5d57d2151506517d28d3bc0c1def844714
-protocols_read_sha: 43dd90d4b7873c500347fba1be01275a48d5795b
+protocols_read_sha: a6a234e83b81671d5f12b113e505fb1b7cd839b2
 updated:      2026-10-27, writeTests exit: tests replayed green through Run-UnitTests.ps1, duplicate search done; scenarios still reference PUBLICATION.md (writeDocs)
 ---
 
