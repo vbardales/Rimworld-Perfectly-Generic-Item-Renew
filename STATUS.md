@@ -19,7 +19,9 @@ tested_on:
 workshop:     3806765659 (PublishedFileId.txt present, nothing uploaded by this audit)
 published:    no
 remaining:
-  - ticket 20261027-231425-803-e71f (make-fixture) done 2026-11-02, 1/1 passed, but the hand-over step only writes into the staged copy (NPT answer): no save kept. Refiled as ticket 20261102-193459-290-66d5 (make-fixture, tree 497a803, step "the saved game is copied to the run folder", evidence Tests/Pickle/Inbox/make-fixture-keep), waiting. On RUN_DONE: copy Inbox/make-fixture-keep/pgi-missing-mod.rws into Mod/Pickle/Fixtures/ and commit (tell NPT if the keep step is red); then file 01-missing-things-replaced, then 02-despawn (map wsl-deps.despawn.map). Check the README assumptions: cells (130,150) and (131,150) free, Apparel_Parka accepts Fabric cloth
+  - done 2026-11-10: make-fixture ticket 20261102-193459-290-66d5 green (1/1, keep step worked); pgi-missing-mod.rws kept in Mod/Pickle/Fixtures/ (commit 8950399), Inbox emptied
+  - ticket 20261110-152538-103-5ee6 (01-missing-things-replaced, no map, evidence Tests/Pickle/Inbox/01-missing) filed 2026-11-10, waiting. On RUN_DONE: read summary.json, sort Inbox (lifecycle), then file 02-despawn (map wsl-deps.despawn.map). Check the README assumptions: cells (130,150) and (131,150) free, Apparel_Parka accepts Fabric cloth
+  - open (protocols 2026-11-07/10): FRENCH_REVIEW.md to regenerate as TRANSLATION_REVIEW.md (Make-TranslationReview.ps1); tested_on must not stay empty (date + sha of last green Pickle run); OptionalCompat.xml entry for the StuffedFloors guarded patch (AUDIT 4.e); mod.json manifest optional
   - unverified: Pickle suite written 2026-10-16 (Tests/Pickle: S1, S2, S4), never played; the fixture save is not made yet (make-fixture pass), S3 and S5 to S7 stay offline or manual with reasons in Tests/Pickle/README.md
   - note (2026-10-27, Virginie): Art/echo-preview.png stays the working name, it is only the preview of the echo for now; echo-source.png comes when the echo is final. Not a defect
   - done 2026-10-27: duplicate search (1.a), 9546 folders, pattern PerfectlyGenericItem and the description; no equivalent mod, only upstream Ogliss 2169353373 (replaced), our own 3806765659 and two consumers (PWG Perfectly Generic Weapons 2178203481, PGI Overpower 3720439672)
@@ -36,7 +38,7 @@ remaining:
   - unverified: the shipped DLL was rebuilt on 2026-10-14 (SHA256 2141A0A7...CBE63); older hashes below describe past sources
 session:      local_bbe6a63f-09d8-4a3c-9070-b9fafe66f132
 social_preview_sha256: 17b5a4dba07b598a201465f7f376bd5d57d2151506517d28d3bc0c1def844714
-protocols_read_sha: a6a234e83b81671d5f12b113e505fb1b7cd839b2
+protocols_read_sha: 726dcfee21f2eceb8d7acfc590531d52aad4b0b7
 updated:      2026-11-02, replay-audit: sections 1 to 7 hold, stage stays playTests[1.0.1]; first open 8.c (Pickle suites 01 and 02 not played, fixture save location asked to NPT); also open 8.f to 8.m (code_review_sha absent, tested_on empty)
 ---
 
